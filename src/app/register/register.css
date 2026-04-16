@@ -1,0 +1,10 @@
+.page {
+  min-height: 100vh;
+
+}
+
+.register-card {
+  width: 400px;
+  border-radius: 16px;
+  border: none;
+}

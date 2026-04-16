@@ -1,0 +1,13 @@
+.page {
+  min-height: 100vh;
+}
+
+.login-card {
+  width: 380px;
+  border-radius: 16px;
+  border: none;
+}
+
+  .login-card h2 {
+    letter-spacing: 0.5px;
+  }

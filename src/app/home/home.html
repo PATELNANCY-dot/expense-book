@@ -1,0 +1,283 @@
+<div class="container py-4">
+
+  <!-- HEADER -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+      <h2 class="fw-bold page-title">💰 Expense Book</h2>
+      <p class="page-subtitle">
+        Track your income and expenses easily
+      </p>
+    </div>
+
+    <button class="btn btn-outline-danger" (click)="logout()">
+      <i class="bi bi-box-arrow-right"></i> Logout
+    </button>
+
+  </div>
+
+  <!-- CARDS -->
+  <div class="row g-3 mb-4">
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-success" style="cursor:pointer"
+           (click)="openIncomeModal()">
+
+        <div class="card-body text-center">
+          <h6 class="text-muted">Total Income</h6>
+          <h3 class="text-success">₹{{ totalIncome }}</h3>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-danger">
+        <div class="card-body text-center">
+          <h6 class="text-muted">Total Expense</h6>
+          <h3 class="text-danger">₹{{ totalExpense }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm border-success">
+        <div class="card-body text-center">
+          <h6 class="text-muted">Balance</h6>
+          <h3 [ngClass]="balance >= 0 ? 'text-success fw-bold' : 'text-danger fw-bold'">
+            ₹{{ balance }}
+          </h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ADD BUTTON -->
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-success" routerLink="/create">
+      + Add Expense
+    </button>
+  </div>
+
+  <!-- TABLE -->
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="recent-title mb-3">Recent Expenses</h5>
+
+      <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+          <thead class="table-light">
+            <tr>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Notes</th>
+              <th class="text-end">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of expenses">
+
+              <td class="fw-semibold">{{ item.title }}</td>
+              <td>
+                <span class="badge bg-secondary">{{ item.category }}</span>
+              </td>
+
+              <td>{{ item.expenseDate | date:'dd-MM-yyyy' }}</td>
+              <td class="text-danger fw-bold">₹{{ item.amount }}</td>
+              <td>{{ item.notes }}</td>
+              <td class="text-end">
+
+                <button class="btn btn-sm btn-warning me-2" (click)="openEdit(item)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+
+                <button class="btn btn-sm btn-danger" (click)="deleteExpense(item.id)">
+                  <i class="bi bi-trash"></i>
+                </button>
+
+              </td>
+
+            </tr>
+          </tbody>
+
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="modal d-block" *ngIf="showEditPopup" style="background: rgba(0,0,0,0.5);">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Expense</h5>
+      </div>
+
+      <div class="modal-body">
+
+        <input class="form-control mb-2"
+               [(ngModel)]="editData.title"
+               placeholder="Title" />
+
+        <input class="form-control mb-2"
+               type="number"
+               [(ngModel)]="editData.amount"
+               placeholder="Amount" />
+
+        <textarea class="form-control mb-2"
+                  rows="2"
+                  placeholder="Notes"
+                  [(ngModel)]="editData.notes">
+        </textarea>
+
+        <!-- CATEGORY DROPDOWN -->
+        <select class="form-select mb-2"
+                [(ngModel)]="editData.category"
+                name="editCategory">
+
+          <option value="">Select Category</option>
+          <option>Food</option>
+          <option>Travel</option>
+          <option>Clothings</option>
+          <option>Shopping</option>
+          <option>Bills</option>
+          <option>Health</option>
+          <option>Entertainment</option>
+          <option>Education</option>
+          <option>Other</option>
+
+        </select>
+
+        <input class="form-control mb-2"
+               type="date"
+               [(ngModel)]="editData.expenseDate" />
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closePopup()">Cancel</button>
+        <button class="btn btn-success" (click)="updateExpense()">Update</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="modal d-block" *ngIf="showIncomeModal"
+style="background: rgba(0,0,0,0.5);">
+
+<div class="modal-dialog modal-lg">
+
+<div class="modal-content">
+
+<div class="modal-header">
+<h5 class="modal-title">Income Manager</h5>
+<button class="custom-close-btn" (click)="closeIncomeModal()">
+  <i class="bi bi-x-circle"></i>
+</button>
+</div>
+
+<div class="modal-body">
+
+<!-- INCOME LIST -->
+
+<table class="table table-bordered mb-4">
+
+<thead class="table-light">
+
+<tr>
+<th>Title</th>
+<th>Amount</th>
+<th>Date</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr *ngFor="let inc of incomes">
+
+<td>{{inc.title}}</td>
+
+<td class="text-success fw-bold">
+₹{{inc.amount}}
+</td>
+
+<td>
+{{inc.incomeDate | date:'dd-MM-yyyy'}}
+</td>
+
+<td>
+
+  <button class="btn btn-sm btn-warning me-2"
+          (click)="editIncome(inc)">
+    <i class="bi bi-pencil"></i>
+  </button>
+
+  <button class="btn btn-sm btn-danger" (click)="deleteIncome(inc.id)">
+    <i class="bi bi-trash"></i>
+  </button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<hr>
+
+<!-- ADD / EDIT FORM -->
+
+<h6 *ngIf="!editIncomeMode">Add Income</h6>
+<h6 *ngIf="editIncomeMode">Edit Income</h6>
+
+<input
+class="form-control mb-2"
+placeholder="Title"
+[(ngModel)]="income.title"
+/>
+
+<input
+class="form-control mb-2"
+type="number"
+placeholder="Amount"
+[(ngModel)]="income.amount"
+/>
+
+<input
+class="form-control mb-2"
+type="date"
+[(ngModel)]="income.incomeDate"
+/>
+
+<button
+class="btn btn-success"
+(click)="saveIncome()"
+>
+{{editIncomeMode ? 'Update Income' : 'Add Income'}}
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
