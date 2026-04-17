@@ -6,7 +6,9 @@
     "\\src\\app\\create",
     "\\src\\app\\home",
     "\\src\\app\\login",
-    "\\src\\app\\register"
+    "\\src\\app\\register",
+    "\\src\\app\\settings"
   ],
+  "SelectedNode": "\\src\\styles.css",
   "PreviewInSolutionExplorer": false
 }

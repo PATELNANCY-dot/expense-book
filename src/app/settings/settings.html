@@ -1,0 +1,101 @@
+<div class="settings-container">
+
+  <div class="settings-title">
+    <h1>⚙ Settings</h1>
+
+    <a routerLink="/home">
+      <i class="bi bi-arrow-left"></i>
+      Back
+    </a>
+  </div>
+
+  <!-- GRID WRAPPER -->
+  <div class="settings-grid">
+
+    <!-- LEFT COLUMN -->
+    <div class="left">
+
+      <!-- Profile -->
+      <div class="settings-card">
+        <h3>Profile</h3>
+
+        <div class="field">
+          <label>Name</label>
+          <input type="text" [(ngModel)]="settings.name">
+        </div>
+
+        <div class="field">
+          <label>Email</label>
+          <input type="email" [(ngModel)]="settings.email">
+        </div>
+
+        <button class="save-btn" (click)="updateProfile()">
+          Update Profile
+        </button>
+      </div>
+
+      <!-- Theme -->
+      <div class="settings-card theme-card">
+
+        <h3>Theme</h3>
+
+        <div class="toggle-row">
+
+          <div class="toggle-text">
+            <span class="theme-label">
+              {{ theme === 'light' ? 'Light Mode' : 'Dark Mode' }}
+            </span>
+            <small class="theme-sub">Switch appearance</small>
+          </div>
+
+          <button class="theme-btn" (click)="toggleTheme()">
+
+            <!-- LIGHT MODE (empty moon) -->
+            <i *ngIf="theme === 'light'" class="bi bi-moon"></i>
+
+            <!-- DARK MODE (filled moon / moon-fill) -->
+            <i *ngIf="theme === 'dark'" class="bi bi-moon-fill"></i>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="right">
+
+      <!-- Change Password -->
+      <div class="settings-card">
+        <h3>Change Password</h3>
+
+        <input type="password" placeholder="Current Password"
+               [(ngModel)]="settings.currentPassword">
+
+        <input type="password" placeholder="New Password"
+               [(ngModel)]="settings.newPassword">
+
+        <input type="password" placeholder="Confirm Password"
+               [(ngModel)]="settings.confirmPassword">
+
+        <button class="save-btn" (click)="changePassword()">
+          Change Password
+        </button>
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="settings-card danger">
+        <h3>Danger Zone</h3>
+
+        <button class="danger-btn" (click)="clearData()">
+          Clear All Data
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

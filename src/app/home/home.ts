@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ChangeDetectorRef } from '@angular/core';
+import Chart from 'chart.js/auto';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +17,11 @@ export class Home implements OnInit {
   incomes: any[] = [];
   editIncomeMode = false;
 
+  showChart = false;
+  chart: any;
+
   income = {
-    id: 0,  
+    id: 0,
     title: '',
     amount: 0,
     incomeDate: ''
@@ -28,13 +31,13 @@ export class Home implements OnInit {
 
   expenses: any[] = [];
   totalExpense: number = 0;
+
   showEditPopup = false;
   user: any;
 
   totalIncome: number = 0;
   balance: number = 0;
 
-  //  NOTES FIELD ADDED
   editData: any = {
     id: 0,
     title: '',
@@ -50,6 +53,7 @@ export class Home implements OnInit {
     private cdr: ChangeDetectorRef
   ) { }
 
+  // ================= INIT =================
   ngOnInit() {
 
     const userData = sessionStorage.getItem('user');
@@ -61,65 +65,52 @@ export class Home implements OnInit {
 
     this.user = JSON.parse(userData);
 
-    const userId = this.user.id;
-
-    if (userId) {
-      this.loadExpenses(userId);
-      this.loadDashboard(userId);
-    }
+    this.loadExpenses(this.user.id);
+    this.loadDashboard(this.user.id);
   }
 
+  // ================= LOGOUT (FIXED ERROR) =================
+  logout() {
+    sessionStorage.removeItem('user');
+    this.router.navigate(['/login']);
+  }
+
+  // ================= EXPENSES =================
   loadExpenses(userId: number) {
 
     this.http.get<any[]>(
       `https://localhost:7042/api/ExpenseTracker/get-expenses/${userId}`
-    ).subscribe({
-      next: (res) => {
+    ).subscribe(res => {
 
-        // ✅ NOTES FIELD MAPPED
-        this.expenses = res.map(x => ({
-          id: x.id,
-          title: x.title,
-          amount: x.amount,
-          category: x.category,
-          expenseDate: x.expenseDate,
-          notes: x.notes
-        }));
+      this.expenses = res.map(x => ({
+        id: x.id,
+        title: x.title,
+        amount: x.amount,
+        category: x.category,
+        expenseDate: x.expenseDate,
+        notes: x.notes
+      }));
 
-        this.totalExpense = this.expenses.reduce(
-          (sum, x) => sum + Number(x.amount || 0),
-          0
-        );
+      this.totalExpense = this.expenses.reduce(
+        (sum, x) => sum + Number(x.amount || 0),
+        0
+      );
 
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        console.log("API ERROR:", err);
-      }
+      this.cdr.detectChanges();
     });
   }
 
   deleteExpense(id: number) {
 
-    if (!id) {
-      console.log("Invalid ID");
-      return;
-    }
+    if (!id) return;
 
     this.http.delete(
       `https://localhost:7042/api/ExpenseTracker/delete-expense/${id}`
-    ).subscribe({
-      next: () => {
-        alert("Deleted!");
-        this.loadExpenses(this.user.id);
-      },
-      error: (err) => console.log(err)
-    });
-  }
+    ).subscribe(() => {
 
-  logout() {
-    sessionStorage.removeItem('user');
-    this.router.navigate(['/login']);
+      alert("Deleted!");
+      this.loadExpenses(this.user.id);
+    });
   }
 
   openEdit(item: any) {
@@ -132,10 +123,7 @@ export class Home implements OnInit {
       amount: item.amount,
       category: item.category,
       notes: item.notes,
-
-      expenseDate: item.expenseDate
-        ? item.expenseDate.split('T')[0]
-        : ''
+      expenseDate: item.expenseDate ? item.expenseDate.split('T')[0] : ''
     };
   }
 
@@ -148,83 +136,46 @@ export class Home implements OnInit {
     this.http.put(
       `https://localhost:7042/api/ExpenseTracker/update-expense/${this.editData.id}`,
       this.editData
-    ).subscribe({
-      next: () => {
+    ).subscribe(() => {
 
-        alert("Updated Successfully!");
-
-        this.showEditPopup = false;
-
-        this.loadExpenses(this.user.id);
-
-        this.closePopup();
-      },
-      error: (err) => console.log(err)
+      alert("Updated Successfully!");
+      this.showEditPopup = false;
+      this.loadExpenses(this.user.id);
+      this.closePopup();
     });
-
   }
 
+  // ================= DASHBOARD =================
   loadDashboard(userId: number) {
 
     this.http.get<any>(
       `https://localhost:7042/api/ExpenseTracker/dashboard/${userId}`
-    ).subscribe({
-      next: (res) => {
+    ).subscribe(res => {
 
-        this.totalIncome = res.totalIncome;
-        this.totalExpense = res.totalExpense;
-        this.balance = res.balance;
+      this.totalIncome = res.totalIncome;
+      this.totalExpense = res.totalExpense;
+      this.balance = res.balance;
 
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        console.log("Dashboard error:", err);
-      }
+      this.cdr.detectChanges();
+    });
+  }
+
+  // ================= INCOME =================
+  openIncomeModal() {
+
+    this.showIncomeModal = true;
+
+    this.http.get<any[]>(
+      `https://localhost:7042/api/ExpenseTracker/get-income/${this.user.id}`
+    ).subscribe(res => {
+
+      this.incomes = res;
+      this.cdr.detectChanges();
     });
   }
 
   closeIncomeModal() {
     this.showIncomeModal = false;
-  }
-
-  addIncome() {
-
-    const user = JSON.parse(sessionStorage.getItem('user') || '{}');
-
-    const data = {
-      ...this.income,
-      userId: user.id || user.Id
-    };
-
-    this.http.post(
-      'https://localhost:7042/api/ExpenseTracker/add-income',
-      data
-    ).subscribe({
-      next: () => {
-
-        alert("Income Saved!");
-
-        this.showIncomeModal = false;
-
-        this.loadDashboard(user.id);
-      },
-      error: (err) => console.log(err)
-    });
-  }
-  openIncomeModal() {
-
-    this.showIncomeModal = true;   
-
-    const userId = this.user.id;
-
-    this.http.get<any[]>(
-      `https://localhost:7042/api/ExpenseTracker/get-income/${userId}`
-    ).subscribe(res => {
-
-      this.incomes = res;
-
-      this.cdr.detectChanges();
-    });
   }
 
   editIncome(item: any) {
@@ -237,6 +188,7 @@ export class Home implements OnInit {
       amount: item.amount,
       incomeDate: item.incomeDate.split('T')[0]
     };
+
     this.cdr.detectChanges();
   }
 
@@ -257,16 +209,12 @@ export class Home implements OnInit {
       ).subscribe(() => {
 
         alert("Income Updated");
-
         this.openIncomeModal();
-
         this.resetIncomeForm();
-
         this.loadDashboard(user.id);
       });
 
-    }
-    else {
+    } else {
 
       this.http.post(
         `https://localhost:7042/api/ExpenseTracker/add-income`,
@@ -274,11 +222,8 @@ export class Home implements OnInit {
       ).subscribe(() => {
 
         alert("Income Added");
-
         this.openIncomeModal();
-
         this.resetIncomeForm();
-
         this.loadDashboard(user.id);
       });
     }
@@ -305,11 +250,70 @@ export class Home implements OnInit {
     ).subscribe(() => {
 
       alert("Income Deleted");
-
       this.openIncomeModal();
-
       this.loadDashboard(this.user.id);
       this.cdr.detectChanges();
     });
+  }
+
+  // ================= CHART =================
+  openChart() {
+
+    this.showChart = true;
+    this.cdr.detectChanges();
+
+    setTimeout(() => {
+      this.renderChart();
+    }, 300);
+  }
+
+  closeChart() {
+    this.showChart = false;
+
+    if (this.chart) {
+      this.chart.destroy();
+      this.chart = null;
+    }
+  }
+
+  renderChart() {
+
+    const canvas = document.getElementById('expenseChart') as HTMLCanvasElement;
+    if (!canvas) return;
+
+    if (this.chart) {
+      this.chart.destroy();
+    }
+
+    const data = this.calculateMonthlyExpenses();
+
+    this.chart = new Chart(canvas, {
+      type: 'bar',
+      data: {
+        labels: data.labels,
+        datasets: [{
+          label: 'Expenses (₹)',
+          data: data.data,
+          backgroundColor: '#22c55e'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+  }
+
+  calculateMonthlyExpenses() {
+
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const data = new Array(12).fill(0);
+
+    this.expenses.forEach(e => {
+      const m = new Date(e.expenseDate).getMonth();
+      data[m] += Number(e.amount);
+    });
+
+    return { labels: months, data };
   }
 }

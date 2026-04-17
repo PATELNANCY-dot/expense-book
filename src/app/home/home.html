@@ -9,10 +9,21 @@
         Track your income and expenses easily
       </p>
     </div>
+    <div>
+      <button class="btn btn-outline-success me-2"
+              (click)="openChart()">
+        <i class="bi bi-bar-chart-fill"></i>
+      </button>
 
-    <button class="btn btn-outline-danger" (click)="logout()">
-      <i class="bi bi-box-arrow-right"></i> Logout
-    </button>
+      <button class="btn btn-outline-secondary me-2" routerLink="/settings">
+        <i class="bi bi-gear"></i>
+      </button>
+
+      <button class="btn btn-outline-danger" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </button>
+      
+    </div>
 
   </div>
 
@@ -177,107 +188,127 @@
 
 
 
-<div class="modal d-block" *ngIf="showIncomeModal"
-style="background: rgba(0,0,0,0.5);">
+<div class="modal d-block income-modal"
+     *ngIf="showIncomeModal"
+     style="background: rgba(0,0,0,0.6);">
 
-<div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
 
-<div class="modal-content">
+    <div class="modal-content income-modal">
 
-<div class="modal-header">
-<h5 class="modal-title">Income Manager</h5>
-<button class="custom-close-btn" (click)="closeIncomeModal()">
-  <i class="bi bi-x-circle"></i>
-</button>
+      <!-- HEADER -->
+      <div class="income-header">
+
+        <div>
+          <h5>💰 Income Manager</h5>
+          <small>Manage your income records</small>
+        </div>
+
+        <button class="close-btn" (click)="closeIncomeModal()">
+          <i class="bi bi-x-lg"></i>
+        </button>
+
+      </div>
+
+      <!-- BODY -->
+      <div class="income-body">
+
+        <!-- LEFT: TABLE -->
+        <div class="income-list">
+
+          <h6 class="section-title">Recent Income</h6>
+
+          <div class="table-box">
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let inc of incomes">
+
+                  <td>{{inc.title}}</td>
+
+                  <td class="amount">
+                    ₹{{inc.amount}}
+                  </td>
+
+                  <td>
+                    {{inc.incomeDate | date:'dd-MM'}}
+                  </td>
+
+                  <td class="actions">
+                    <button (click)="editIncome(inc)">✏️</button>
+                    <button (click)="deleteIncome(inc.id)">🗑️</button>
+                  </td>
+
+                </tr>
+              </tbody>
+
+            </table>
+
+          </div>
+        </div>
+
+        <!-- RIGHT: FORM -->
+        <div class="income-form">
+
+          <h6 class="section-title">
+            {{ editIncomeMode ? 'Edit Income' : 'Add Income' }}
+          </h6>
+
+          <input placeholder="Title"
+                 [(ngModel)]="income.title" />
+
+          <input type="number"
+                 placeholder="Amount"
+                 [(ngModel)]="income.amount" />
+
+          <input type="date"
+                 [(ngModel)]="income.incomeDate" />
+
+          <button class="save-btn"
+                  (click)="saveIncome()">
+
+            {{ editIncomeMode ? 'Update' : 'Add' }}
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 </div>
 
-<div class="modal-body">
+<div class="modal d-block"
+     *ngIf="showChart"
+     style="background: rgba(0,0,0,0.5);">
 
-<!-- INCOME LIST -->
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
 
-<table class="table table-bordered mb-4">
+      <div class="modal-header">
+        <h5 class="modal-title">📊 Monthly Expense Chart</h5>
 
-<thead class="table-light">
+        <button class="custom-close-btn" (click)="showChart = false">
+          <i class="bi bi-x-circle"></i>
+        </button>
+      </div>
 
-<tr>
-<th>Title</th>
-<th>Amount</th>
-<th>Date</th>
-<th>Action</th>
-</tr>
+      <div class="modal-body">
+        <canvas id="expenseChart"></canvas>
+      </div>
 
-</thead>
-
-<tbody>
-
-<tr *ngFor="let inc of incomes">
-
-<td>{{inc.title}}</td>
-
-<td class="text-success fw-bold">
-₹{{inc.amount}}
-</td>
-
-<td>
-{{inc.incomeDate | date:'dd-MM-yyyy'}}
-</td>
-
-<td>
-
-  <button class="btn btn-sm btn-warning me-2"
-          (click)="editIncome(inc)">
-    <i class="bi bi-pencil"></i>
-  </button>
-
-  <button class="btn btn-sm btn-danger" (click)="deleteIncome(inc.id)">
-    <i class="bi bi-trash"></i>
-  </button>
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-<hr>
-
-<!-- ADD / EDIT FORM -->
-
-<h6 *ngIf="!editIncomeMode">Add Income</h6>
-<h6 *ngIf="editIncomeMode">Edit Income</h6>
-
-<input
-class="form-control mb-2"
-placeholder="Title"
-[(ngModel)]="income.title"
-/>
-
-<input
-class="form-control mb-2"
-type="number"
-placeholder="Amount"
-[(ngModel)]="income.amount"
-/>
-
-<input
-class="form-control mb-2"
-type="date"
-[(ngModel)]="income.incomeDate"
-/>
-
-<button
-class="btn btn-success"
-(click)="saveIncome()"
->
-{{editIncomeMode ? 'Update Income' : 'Add Income'}}
-</button>
-
-</div>
-
-</div>
-
-</div>
+    </div>
+  </div>
 
 </div>

@@ -3,3 +3,228 @@ html, body {
   margin: 0;
   background: #eef4ff;
 }
+
+  /* =========================
+   MODERN DARK MODE ROOT
+   (Soft Dark - Not Too Black)
+========================= */
+  body.dark-mode {
+    background: #0f172a; /* soft slate */
+    color: #e5e7eb;
+  }
+
+    /* ensure full app background */
+    body.dark-mode,
+    body.dark-mode html {
+      background: #0f172a !important;
+    }
+
+      /* =========================
+   PAGE BACKGROUND
+========================= */
+      body.dark-mode .page {
+        background: #0f172a !important;
+      }
+
+      /* =========================
+   TEXT COLORS (GLOBAL)
+========================= */
+      body.dark-mode h1,
+      body.dark-mode h2,
+      body.dark-mode h3,
+      body.dark-mode h4,
+      body.dark-mode p,
+      body.dark-mode label {
+        color: #e5e7eb !important;
+      }
+
+      /* muted text */
+      body.dark-mode .card-body h6,
+      body.dark-mode .page-subtitle {
+        color: #94a3b8 !important;
+      }
+
+      /* =========================
+   CARDS (ALL TYPES)
+========================= */
+      body.dark-mode .card,
+      body.dark-mode .form-card,
+      body.dark-mode .settings-card,
+      body.dark-mode .login-card {
+        background: #1e293b !important;
+        color: #e5e7eb !important;
+        border: 1px solid #334155 !important;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35) !important;
+      }
+
+        /* hover effect */
+        body.dark-mode .card:hover,
+        body.dark-mode .settings-card:hover {
+          transform: translateY(-2px);
+          transition: 0.2s ease;
+        }
+
+      /* =========================
+   TITLES
+========================= */
+      body.dark-mode .page-title,
+      body.dark-mode .settings-title {
+        color: #38bdf8 !important; /* modern cyan accent */
+      }
+
+      body.dark-mode .recent-title {
+        color: #fbbf24 !important; /* warm accent */
+      }
+
+      /* =========================
+   INPUTS (ALL PAGES)
+========================= */
+      body.dark-mode input,
+      body.dark-mode .form-control,
+      body.dark-mode .form-select {
+        background: #1e293b !important;
+        border: 1px solid #334155 !important;
+        color: #f1f5f9 !important;
+      }
+
+        body.dark-mode input::placeholder {
+          color: #94a3b8 !important;
+        }
+
+        body.dark-mode input:focus,
+        body.dark-mode .form-control:focus,
+        body.dark-mode .form-select:focus {
+          border-color: #22c55e !important;
+          box-shadow: 0 0 0 0.2rem rgba(34, 197, 94, 0.2) !important;
+        }
+
+      /* =========================
+   TABLES
+========================= */
+      body.dark-mode .table {
+        background: #1e293b !important;
+        color: #e5e7eb !important;
+      }
+
+        body.dark-mode .table thead {
+          background: #111827 !important;
+        }
+
+        body.dark-mode .table td,
+        body.dark-mode .table th {
+          border-color: #334155 !important;
+        }
+
+      /* =========================
+   BADGES
+========================= */
+      body.dark-mode .badge {
+        background: #334155 !important;
+        color: #e2e8f0 !important;
+      }
+
+      /* =========================
+   BUTTONS (SOFT DARK MODE)
+========================= */
+      body.dark-mode .btn-success {
+        background: #22c55e !important;
+        border: none !important;
+      }
+
+      body.dark-mode .btn-danger {
+        background: #ef4444 !important;
+        border: none !important;
+      }
+
+      body.dark-mode .btn-warning {
+        background: #facc15 !important;
+        color: #111827 !important;
+      }
+
+      /* outline button fix */
+      body.dark-mode .btn-outline-primary {
+        border-color: #60a5fa !important;
+        color: #60a5fa !important;
+      }
+
+        body.dark-mode .btn-outline-primary:hover {
+          background: #60a5fa !important;
+          color: #0f172a !important;
+        }
+
+      /* =========================
+   MODALS
+========================= */
+      body.dark-mode .modal-content {
+        background: #1e293b !important;
+        color: #e5e7eb !important;
+        border: 1px solid #334155 !important;
+      }
+
+      body.dark-mode .modal-header {
+        border-bottom: 1px solid #334155 !important;
+      }
+
+      /* close button */
+      body.dark-mode .custom-close-btn {
+        background: #334155 !important;
+        color: #e5e7eb !important;
+      }
+
+        body.dark-mode .custom-close-btn:hover {
+          background: #ef4444 !important;
+          color: white !important;
+        }
+
+      /* =========================
+   SETTINGS PAGE
+========================= */
+      body.dark-mode body {
+        background: #0f172a !important;
+      }
+
+      body.dark-mode .settings-title a {
+        color: #60a5fa !important;
+      }
+
+        body.dark-mode .settings-title a:hover {
+          background: rgba(96, 165, 250, 0.1) !important;
+        }
+
+      /* =========================
+   LOGIN PAGE
+========================= */
+      body.dark-mode .login-card h2 {
+        color: #38bdf8 !important;
+      }
+
+      /* =========================
+   SPECIAL FIXES
+========================= */
+      body.dark-mode .border-primary {
+        border-left-color: #3b82f6 !important;
+      }
+
+      body.dark-mode .border-danger {
+        border-left-color: #ef4444 !important;
+      }
+
+      body.dark-mode .border-success {
+        border-left-color: #22c55e !important;
+      }
+      body.dark-mode .theme-label {
+        color: #e5e7eb;
+      }
+
+      body.dark-mode .theme-sub {
+        color: #94a3b8;
+      }
+
+      body.dark-mode .slider {
+        background-color: #334155;
+      }
+
+      body.dark-mode .modal-content {
+        background: #1e293b;
+        color: #e5e7eb;
+      }
