@@ -228,3 +228,20 @@ html, body {
         background: #1e293b;
         color: #e5e7eb;
       }
+
+
+/* Hide scrollbar for Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+/* Hide scrollbar for Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for IE */
+body {
+  -ms-overflow-style: none;
+}

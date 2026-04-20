@@ -311,3 +311,49 @@ canvas {
   font-weight: 600;
   cursor: pointer;
 }
+
+
+/* FORM HEADER */
+.income-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* RESET BUTTON */
+.btn-reset {
+  background: #f8f9fa;
+  border: 1px solid #c8e6c9;
+  color: #198754;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+  /* HOVER */
+  .btn-reset:hover {
+    background: #e8f5e9;
+    border-color: #198754;
+    color: #146c43;
+    transform: translateY(-1px);
+  }
+
+
+.modal-content {
+  animation: popup 0.25s ease;
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -9,7 +9,7 @@
       <p class="text-muted">Login to manage your expenses</p>
     </div>
 
-    <form (ngSubmit)="login()">
+    <form  class="form"  (ngSubmit)="login()">
 
       <div class="mb-3 text-start">
         <label class="form-label">Email</label>
@@ -27,15 +27,21 @@
 
       <div class="mb-3 text-start">
         <label class="form-label">Password</label>
+
         <div class="input-group">
           <span class="input-group-text">
             <i class="bi bi-lock"></i>
           </span>
-          <input type="password"
+
+          <input [type]="showPassword ? 'text' : 'password'"
                  class="form-control"
                  [(ngModel)]="password"
                  name="password"
                  placeholder="Enter password" />
+
+          <span class="input-group-text eye-btn" (click)="togglePassword()">
+            <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+          </span>
         </div>
       </div>
 

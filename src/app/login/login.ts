@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, CommonModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -14,7 +15,11 @@ export class Login {
 
   email: string = '';
   password: string = '';
+  showPassword: boolean = false;
 
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
   constructor(
     private http: HttpClient,
     private router: Router

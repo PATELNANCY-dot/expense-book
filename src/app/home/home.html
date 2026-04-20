@@ -259,9 +259,20 @@
         <!-- RIGHT: FORM -->
         <div class="income-form">
 
-          <h6 class="section-title">
-            {{ editIncomeMode ? 'Edit Income' : 'Add Income' }}
-          </h6>
+          <div class="income-form-header">
+
+            <h6 class="section-title">
+              {{ editIncomeMode ? 'Edit Income' : 'Add Income' }}
+            </h6>
+
+            <button type="button"
+                    class="btn btn-reset"
+                    (click)="resetIncomeForm()">
+              <i class="bi bi-arrow-counterclockwise"></i>
+              Reset
+            </button>
+
+          </div>
 
           <input placeholder="Title"
                  [(ngModel)]="income.title" />

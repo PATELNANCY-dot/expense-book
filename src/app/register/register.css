@@ -8,3 +8,27 @@
   border-radius: 16px;
   border: none;
 }
+
+
+.input-group-text {
+  background: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  color: #198754;
+}
+
+.eye-btn {
+  cursor: pointer;
+  background: #e8f5e9;
+  color: #198754;
+  border-left: none;
+}
+
+  .eye-btn:hover {
+    background: #d1f2da;
+    color: #146c43;
+  }
+
+.form-control:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.15rem rgba(25,135,84,.25);
+}

@@ -176,6 +176,7 @@ export class Home implements OnInit {
 
   closeIncomeModal() {
     this.showIncomeModal = false;
+    this.resetIncomeForm();
   }
 
   editIncome(item: any) {
