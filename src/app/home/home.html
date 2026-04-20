@@ -1,10 +1,10 @@
-<div class="container py-4">
+<div class="container">
 
   <!-- HEADER -->
   <div class="d-flex justify-content-between align-items-center mb-4">
 
     <div>
-      <h2 class="fw-bold page-title">💰 Expense Book</h2>
+      <h2 class="fw-bold page-title"> <i class="bi bi-wallet2"></i> Expense Book</h2>
       <p class="page-subtitle">
         Track your income and expenses easily
       </p>
@@ -19,10 +19,12 @@
         <i class="bi bi-gear"></i>
       </button>
 
+     
+
       <button class="btn btn-outline-danger" (click)="logout()">
         <i class="bi bi-box-arrow-right"></i> Logout
       </button>
-      
+
     </div>
 
   </div>
@@ -80,7 +82,7 @@
 
         <table class="table table-hover align-middle">
 
-          <thead class="table-light">
+          <thead>
             <tr>
               <th>Title</th>
               <th>Category</th>
@@ -140,7 +142,7 @@
         <input class="form-control mb-2"
                [(ngModel)]="editData.title"
                placeholder="Title" />
-
+        
         <input class="form-control mb-2"
                type="number"
                [(ngModel)]="editData.amount"
@@ -199,8 +201,10 @@
       <!-- HEADER -->
       <div class="income-header">
 
-        <div>
-          <h5>💰 Income Manager</h5>
+        <div class="income-title">
+          <h4>
+            <i class="bi bi-wallet2"></i> Income Manager
+          </h4>
           <small>Manage your income records</small>
         </div>
 
@@ -244,8 +248,17 @@
                   </td>
 
                   <td class="actions">
-                    <button (click)="editIncome(inc)">✏️</button>
-                    <button (click)="deleteIncome(inc.id)">🗑️</button>
+
+                    <button class="btn btn-sm btn-warning me-2"
+                            (click)="editIncome(inc)">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+
+                    <button class="btn btn-sm btn-danger"
+                            (click)="deleteIncome(inc.id)">
+                      <i class="bi bi-trash"></i>
+                    </button>
+
                   </td>
 
                 </tr>

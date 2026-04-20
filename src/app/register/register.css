@@ -1,34 +1,56 @@
 .page {
   min-height: 100vh;
-
 }
 
+/* CARD */
 .register-card {
   width: 400px;
   border-radius: 16px;
   border: none;
 }
 
+  .register-card h2 {
+    color: #0f766e;
+  }
 
+/* INPUT ICON AREA */
 .input-group-text {
-  background: #e8f5e9;
-  border: 1px solid #c8e6c9;
-  color: #198754;
+  background: #e6f4f3;
+  border: 1px solid #bfe3df;
+  color: #0f766e;
 }
 
+/* EYE BUTTON */
 .eye-btn {
   cursor: pointer;
-  background: #e8f5e9;
-  color: #198754;
+  background: #e6f4f3;
+  color: #0f766e;
   border-left: none;
 }
 
   .eye-btn:hover {
-    background: #d1f2da;
-    color: #146c43;
+    background: #d1ece9;
+    color: #0c5f59;
   }
 
+/* INPUT FOCUS */
 .form-control:focus {
-  border-color: #198754;
-  box-shadow: 0 0 0 0.15rem rgba(25,135,84,.25);
+  border-color: #0f766e;
+  box-shadow: 0 0 0 0.15rem rgba(15,118,110,.25);
+}
+
+/* BUTTON */
+.btn-success {
+  background: #0f766e;
+  border: #0f766e;
+}
+
+  .btn-success:hover {
+    background: #0c5f59;
+    border: #0c5f59;
+  }
+
+/* LINK COLOR */
+.text-success {
+  color: #0f766e !important;
 }

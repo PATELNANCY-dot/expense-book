@@ -1,108 +1,147 @@
-/* =========================
-   PAGE
-========================= */
-body {
-  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
-  font-family: 'Inter', sans-serif;
+html, body {
+  height: 100%;
   margin: 0;
   overflow-x: hidden;
 }
-
-/* container */
-.settings-container {
-  max-width: 1000px;
-  margin: 20px auto;
-  padding: 15px;
+/* =========================
+   PAGE CONTAINER
+========================= */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* title */
+/* =========================
+   HEADER
+========================= */
 .settings-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
   .settings-title h1 {
-    font-size: 24px;
-    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
   }
 
   .settings-title a {
     text-decoration: none;
-    color: #4a90e2;
+    color: #0f766e;
     font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 10px;
+    transition: 0.2s;
   }
 
+    .settings-title a:hover {
+      background: #e6fffb;
+    }
+
 /* =========================
-   GRID LAYOUT (FIX SCROLL)
+   GRID LAYOUT
 ========================= */
 .settings-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 24px;
 }
 
-/* columns spacing control */
 .left,
 .right {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 24px;
 }
 
 /* =========================
-   CARDS (COMPACT)
+   CARD DESIGN (MODERN SaaS)
 ========================= */
 .settings-card {
-  background: #fff;
-  padding: 16px;
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #eef2f7;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+  transition: all 0.25s ease;
 }
 
-  /* reduce vertical waste */
+  .settings-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+  }
+
   .settings-card h3 {
-    margin: 0 0 10px 0;
     font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 14px;
   }
 
 /* =========================
-   INPUTS (COMPACT)
+   INPUT FIELDS
 ========================= */
 input {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 13px;
+  padding: 11px 12px;
+  margin-bottom: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 14px;
+  background: #fafafa;
+  outline: none;
+  transition: 0.2s;
 }
 
+  input:focus {
+    border-color: #0f766e;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+  }
+
 /* =========================
-   BUTTONS
+   PRIMARY BUTTON
 ========================= */
 .save-btn {
   width: 100%;
-  padding: 10px;
+  padding: 11px;
   border: none;
-  border-radius: 8px;
-  background: #4a90e2;
+  border-radius: 12px;
+  background: #0f766e;
   color: white;
+  font-weight: 600;
   cursor: pointer;
+  transition: 0.2s;
 }
 
-.danger-btn {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  background: #ef4444;
-  color: white;
-}
+  .save-btn:hover {
+    background: #0d5f57;
+    transform: translateY(-1px);
+  }
 
 /* =========================
-   THEME SWITCH
+   DANGER BUTTON
+========================= */
+.danger-btn {
+  width: 100%;
+  padding: 11px;
+  border-radius: 12px;
+  border: none;
+  background: #ef4444;
+  color: white;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+  .danger-btn:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+  }
+
+/* =========================
+   THEME SWITCH SECTION
 ========================= */
 .toggle-row {
   display: flex;
@@ -111,103 +150,53 @@ input {
 }
 
 .theme-label {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
+  color: #0f766e;
 }
 
 .theme-sub {
   font-size: 12px;
-  color: #777;
+  color: #64748b;
 }
 
-/* switch */
-.switch {
-  width: 42px;
-  height: 22px;
-  position: relative;
-}
-
-  .switch input {
-    display: none;
-  }
-
-.slider {
-  position: absolute;
-  inset: 0;
-  background: #cbd5e1;
-  border-radius: 20px;
+/* =========================
+   THEME BUTTON (CIRCLE)
+========================= */
+.theme-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: 0.2s;
 }
 
-  .slider:before {
-    content: "";
-    position: absolute;
-    height: 16px;
-    width: 16px;
-    left: 3px;
-    top: 3px;
-    background: white;
-    border-radius: 50%;
-    transition: 0.2s;
+  .theme-btn:hover {
+    background: #f0fdfa;
+    border-color: #0f766e;
+    transform: rotate(8deg);
   }
 
-.switch input:checked + .slider {
-  background: #22c55e;
-}
-
-  .switch input:checked + .slider:before {
-    transform: translateX(20px);
+  .theme-btn i {
+    color: #0f766e;
+    font-size: 18px;
   }
 
 /* =========================
-   RESPONSIVE (NO SCROLL FIX)
+   RESPONSIVE DESIGN
 ========================= */
 @media (max-width: 768px) {
   .settings-grid {
     grid-template-columns: 1fr;
   }
+
+  .settings-container {
+    padding: 12px;
+    height: auto;
+  }
 }
-
-
-/* =========================
-   THEME ICON BUTTON
-========================= */
-.theme-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background: #e5e7eb;
-  transition: 0.25s;
-  font-size: 18px;
-}
-
-  /* hover */
-  .theme-btn:hover {
-    transform: scale(1.05);
-    background: #d1d5db;
-  }
-
-  /* icon color */
-  .theme-btn i {
-    color: #111827;
-  }
-
-/* =========================
-   DARK MODE ICON STYLE
-========================= */
-body.dark-mode .theme-btn {
-  background: #334155;
-}
-
-  body.dark-mode .theme-btn i {
-    color: #f8fafc;
-  }
-
-  body.dark-mode .theme-btn:hover {
-    background: #475569;
-  }

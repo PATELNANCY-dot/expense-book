@@ -1,14 +1,24 @@
-.page {
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  min-height: 100vh;
-  padding: 20px;
-}
 
-/* CENTER WRAPPER */
-.container {
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* keep no scroll */
+}
+.page {
+  height: 100vh;
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+}
+/* CENTER WRAPPER */
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 /* CARD */

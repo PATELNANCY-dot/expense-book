@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
-import { ChangeDetectorRef } from '@angular/core'; 
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-settings',
@@ -16,50 +16,79 @@ export class Settings implements OnInit {
 
   apiUrl = "https://localhost:7042/api/ExpenseTracker";
   theme: string = 'light';
-
+  userId: number = 0;
 
   settings = {
     id: 0,
     name: '',
     email: '',
-
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
   };
 
-  userId: number = 0;
-
-  constructor(private http: HttpClient, private router: Router, private cdr: ChangeDetectorRef) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
-    const savedTheme = localStorage.getItem('theme');
 
-    if (savedTheme) {
-      this.theme = savedTheme;
-      this.applyTheme();
-    }
+    // =========================
+    // 1. GET USER
+    // =========================
     const user = sessionStorage.getItem("user");
 
-    if (user) {
-      const parsedUser = JSON.parse(user);
-
-      // ✅ FIX: ensure number type
-      this.userId = Number(parsedUser?.id);
-
-      console.log("Logged User ID:", this.userId);
+    if (!user) {
+      console.error("User not found");
+      return;
     }
 
-    if (this.userId) {
-      this.getUserProfile();
-    } else {
-      console.error("User ID not found in session storage");
+    const parsedUser = JSON.parse(user);
+    this.userId = Number(parsedUser?.id);
+
+    console.log("Logged User ID:", this.userId);
+
+    this.getUserProfile();
+
+    // =========================
+    // 2. LOAD THEME FROM SESSION FIRST
+    // =========================
+    const sessionTheme = sessionStorage.getItem('theme');
+
+    if (sessionTheme) {
+      this.theme = sessionTheme;
+      document.body.classList.toggle('dark-mode', this.theme === 'dark');
     }
+
+    // =========================
+    // 3. OVERRIDE WITH DB THEME
+    // =========================
+    this.http.get<any>(
+      `${this.apiUrl}/get-theme/${this.userId}`
+    ).subscribe({
+      next: (res) => {
+
+        const isDark = res?.darkMode ?? false;
+
+        this.theme = isDark ? 'dark' : 'light';
+
+        sessionStorage.setItem('theme', this.theme);
+
+        document.body.classList.toggle('dark-mode', isDark);
+      },
+
+      error: (err) => {
+        console.log("Theme API error:", err);
+      }
+    });
   }
 
+  // =========================
   // GET USER PROFILE
+  // =========================
   getUserProfile() {
-
     this.http.get<any>(`${this.apiUrl}/get-user-profile/${this.userId}`)
       .subscribe({
         next: (res) => {
@@ -68,13 +97,13 @@ export class Settings implements OnInit {
           this.settings.email = res.email;
           this.cdr.detectChanges();
         },
-        error: (err) => {
-          console.log("Get profile error:", err);
-        }
+        error: (err) => console.log(err)
       });
   }
 
+  // =========================
   // UPDATE PROFILE
+  // =========================
   updateProfile() {
 
     const payload = {
@@ -86,11 +115,13 @@ export class Settings implements OnInit {
     this.http.put(`${this.apiUrl}/update-profile`, payload)
       .subscribe({
         next: () => alert("Profile Updated"),
-        error: (err) => console.log(err.error)
+        error: (err) => console.log(err)
       });
   }
 
+  // =========================
   // CHANGE PASSWORD
+  // =========================
   changePassword() {
 
     if (!this.settings.currentPassword ||
@@ -119,44 +150,50 @@ export class Settings implements OnInit {
           this.settings.currentPassword = '';
           this.settings.newPassword = '';
           this.settings.confirmPassword = '';
+
           this.router.navigate(['/login']);
         },
-        error: (err) => console.log(err.error)
+        error: (err) => console.log(err)
       });
   }
 
+  // =========================
   // CLEAR DATA
+  // =========================
   clearData() {
 
     if (confirm("Delete all expenses and income?")) {
 
       this.http.delete(`${this.apiUrl}/clear-user-data/${this.userId}`)
         .subscribe({
-          next: () => {
-            alert("All Data Deleted");
-          },
-          error: (err) => {
-            console.log("Delete Error:", err.error);
-          }
+          next: () => alert("All Data Deleted"),
+          error: (err) => console.log(err)
         });
     }
   }
 
+  // =========================
+  // TOGGLE THEME
+  // =========================
   toggleTheme() {
 
     this.theme = this.theme === 'light' ? 'dark' : 'light';
 
-    localStorage.setItem('theme', this.theme);
+    // session storage (current tab)
+    sessionStorage.setItem('theme', this.theme);
 
-    this.applyTheme();
-  }
+    // apply UI
+    document.body.classList.toggle('dark-mode', this.theme === 'dark');
 
-  applyTheme() {
+    // save to DB
+    const payload = {
+      userId: this.userId,
+      darkMode: this.theme === 'dark'
+    };
 
-    if (this.theme === 'dark') {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
+    this.http.post(
+      `${this.apiUrl}/save-theme`,
+      payload
+    ).subscribe();
   }
 }
