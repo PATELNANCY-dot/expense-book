@@ -32,7 +32,7 @@ export class Login {
       password: this.password
     };
 
-    this.http.post('https://localhost:7042/api/ExpenseTracker/login', user)
+    this.http.post('https://expensetracker-pd7u.onrender.com/api/ExpenseTracker/login', user)
       .subscribe({
         next: (res: any) => {
 
@@ -40,9 +40,8 @@ export class Login {
 
           const userId = res.data.id;
 
-          // =========================
           // CHECK IF THEME ALREADY EXISTS
-          // =========================
+
           const sessionTheme = sessionStorage.getItem('theme');
 
           if (sessionTheme) {
@@ -57,7 +56,7 @@ export class Login {
             };
 
             this.http.post(
-              'https://localhost:7042/api/ExpenseTracker/save-theme',
+              'https://expensetracker-pd7u.onrender.com/api/ExpenseTracker/save-theme',
               payload
             ).subscribe();
 
@@ -67,11 +66,10 @@ export class Login {
 
           else {
 
-            // =========================
             // IF NO THEME IN SESSION → LOAD FROM DB
-            // =========================
+
             this.http.get<any>(
-              `https://localhost:7042/api/ExpenseTracker/get-theme/${userId}`
+              `https://expensetracker-pd7u.onrender.com/api/ExpenseTracker/get-theme/${userId}`
             ).subscribe({
 
               next: (themeRes) => {

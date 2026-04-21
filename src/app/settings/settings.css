@@ -3,18 +3,14 @@ html, body {
   margin: 0;
   overflow-x: hidden;
 }
-/* =========================
-   PAGE CONTAINER
-========================= */
+/* PAGE CONTAINER */
 .container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 .settings-title {
   display: flex;
   justify-content: space-between;
@@ -41,9 +37,7 @@ html, body {
       background: #e6fffb;
     }
 
-/* =========================
-   GRID LAYOUT
-========================= */
+/* GRID LAYOUT */
 .settings-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -57,9 +51,7 @@ html, body {
   gap: 24px;
 }
 
-/* =========================
-   CARD DESIGN (MODERN SaaS)
-========================= */
+/*CARD */
 .settings-card {
   background: #ffffff;
   border-radius: 16px;
@@ -80,9 +72,7 @@ html, body {
     margin-bottom: 14px;
   }
 
-/* =========================
-   INPUT FIELDS
-========================= */
+/* INPUT FIELDS */
 input {
   width: 100%;
   padding: 11px 12px;
@@ -101,9 +91,7 @@ input {
     box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
   }
 
-/* =========================
-   PRIMARY BUTTON
-========================= */
+/* PRIMARY BUTTON */
 .save-btn {
   width: 100%;
   padding: 11px;
@@ -121,9 +109,7 @@ input {
     transform: translateY(-1px);
   }
 
-/* =========================
-   DANGER BUTTON
-========================= */
+/* DANGER BUTTON */
 .danger-btn {
   width: 100%;
   padding: 11px;
@@ -140,9 +126,7 @@ input {
     transform: translateY(-1px);
   }
 
-/* =========================
-   THEME SWITCH SECTION
-========================= */
+/* THEME SWITCH SECTION */
 .toggle-row {
   display: flex;
   justify-content: space-between;
@@ -160,9 +144,7 @@ input {
   color: #64748b;
 }
 
-/* =========================
-   THEME BUTTON (CIRCLE)
-========================= */
+/* THEME BUTTON (CIRCLE) */
 .theme-btn {
   width: 44px;
   height: 44px;
@@ -187,9 +169,8 @@ input {
     font-size: 18px;
   }
 
-/* =========================
-   RESPONSIVE DESIGN
-========================= */
+/*  RESPONSIVE DESIGN */
+
 @media (max-width: 768px) {
   .settings-grid {
     grid-template-columns: 1fr;

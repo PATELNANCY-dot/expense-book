@@ -98,9 +98,7 @@ html, body {
 }
 
 
-/* =========================
-   DARK MODE SUPPORT
-========================= */
+/* DARK MODE SUPPORT */
 
 body.dark-mode .guide-card {
   background: #111c2e !important;

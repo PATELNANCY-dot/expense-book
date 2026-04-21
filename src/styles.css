@@ -10,9 +10,7 @@ html, body {
   body.dark-mode * {
     transition: background 0.2s ease, color 0.2s ease;
   }
-  /* =========================
-   ROOT DARK MODE THEME
-========================= */
+  /* ROOT DARK MODE THEME */
   body.dark-mode {
     background: #0b1220;
     color: #e5e7eb;
@@ -30,18 +28,14 @@ html, body {
     background: #0b1220 !important;
   }
 
-    /* =========================
-   PAGE BACKGROUND
-========================= */
+    /* PAGE BACKGROUND */
     body.dark-mode .page,
     body.dark-mode .container,
     body.dark-mode .settings-container {
       background: transparent !important;
     }
 
-    /* =========================
-   GLOBAL TEXT
-========================= */
+    /* GLOBAL TEXT */
     body.dark-mode h1,
     body.dark-mode h2,
     body.dark-mode h3,
@@ -58,9 +52,7 @@ html, body {
       color: #94a3b8 !important;
     }
 
-    /* =========================
-   CARDS (ALL PAGES)
-========================= */
+    /* CARDS (ALL PAGES) */
     body.dark-mode .card,
     body.dark-mode .form-card,
     body.dark-mode .settings-card,
@@ -80,9 +72,7 @@ html, body {
         transition: 0.2s ease;
       }
 
-    /* =========================
-   HEADINGS / TITLES
-========================= */
+    /* HEADINGS / TITLES */
     body.dark-mode .page-title,
     body.dark-mode .settings-title h1,
     body.dark-mode .modal-title {
@@ -94,9 +84,7 @@ html, body {
       color: #0f766e !important;
     }
 
-    /* =========================
-   INPUTS (ALL FORMS)
-========================= */
+    /* INPUTS (ALL FORMS) */
     body.dark-mode input,
     body.dark-mode .form-control,
     body.dark-mode .form-select,
@@ -119,9 +107,7 @@ html, body {
         box-shadow: 0 0 0 0.2rem rgba(15,118,110,0.25) !important;
       }
 
-    /* =========================
-   BUTTONS (GLOBAL TEAL SYSTEM)
-========================= */
+    /* BUTTONS (GLOBAL TEAL SYSTEM)*/
     body.dark-mode .btn-success,
     body.dark-mode .save-btn {
       background: #0f766e !important;
@@ -156,9 +142,7 @@ html, body {
         color: white !important;
       }
 
-    /* =========================
-   TABLES
-========================= */
+    /* TABLES */
     body.dark-mode .table {
       background: #111c2e !important;
       color: #e5e7eb !important;
@@ -180,9 +164,7 @@ html, body {
       border: 1px solid #1f2a3a;
     }
 
-    /* =========================
-   MODALS
-========================= */
+    /* MODALS */
     body.dark-mode .modal-content {
       background: #111c2e !important;
       border: 1px solid #1f2a3a !important;
@@ -199,9 +181,7 @@ html, body {
       backdrop-filter: blur(6px);
     }
 
-    /* =========================
-   LOGIN / REGISTER SPECIFIC
-========================= */
+    /* LOGIN / REGISTER SPECIFIC */
     body.dark-mode .login-card h2,
     body.dark-mode .register-card h2 {
       color: #14b8a6 !important;
@@ -220,9 +200,7 @@ html, body {
       color: #14b8a6 !important;
     }
 
-    /* =========================
-   SETTINGS PAGE
-========================= */
+    /* SETTINGS PAGE */
     body.dark-mode .settings-title a {
       color: #14b8a6 !important;
     }
@@ -250,16 +228,12 @@ html, body {
         color: #14b8a6 !important;
       }
 
-    /* =========================
-   CHART / CANVAS AREA
-========================= */
+    /* CHART / CANVAS AREA */
     body.dark-mode canvas {
       filter: brightness(0.9) contrast(1.1);
     }
 
-/* =========================
-   SCROLLBAR (CLEAN)
-========================= */
+/* SCROLLBAR (CLEAN) */
 ::-webkit-scrollbar {
   width: 0px;
 }

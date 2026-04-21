@@ -206,9 +206,7 @@ html, body {
     background: #d1ece9;
   }
 
-/* =========================
-   INCOME MODAL
-========================= */
+/* INCOME MODAL */
 
 .income-modal .modal-content {
   border-radius: 16px;
@@ -332,9 +330,7 @@ html, body {
     background: #e2e8f0;
   }
 
-/* =========================
-   CHART
-========================= */
+/* CHART */
 
 canvas {
   max-height: 400px;
@@ -354,9 +350,7 @@ canvas {
 
 
 
-/* =========================
-   FULL DARK MODE FIX (IMPORTANT)
-========================= */
+/* FULL DARK MODE  (IMPORTANT) */
 
 body.dark-mode {
   background: #0b1220 !important;
@@ -404,3 +398,5 @@ body.dark-mode .income-title h4 {
 body.dark-mode .income-title small {
   color: #94a3b8 !important;
 }
+
+

@@ -14,7 +14,7 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class Settings implements OnInit {
 
-  apiUrl = "https://localhost:7042/api/ExpenseTracker";
+  apiUrl = "https://expensetracker-pd7u.onrender.com/api/ExpenseTracker";
   theme: string = 'light';
   userId: number = 0;
 
@@ -35,9 +35,9 @@ export class Settings implements OnInit {
 
   ngOnInit() {
 
-    // =========================
+
     // 1. GET USER
-    // =========================
+
     const user = sessionStorage.getItem("user");
 
     if (!user) {
@@ -52,9 +52,9 @@ export class Settings implements OnInit {
 
     this.getUserProfile();
 
-    // =========================
+
     // 2. LOAD THEME FROM SESSION FIRST
-    // =========================
+
     const sessionTheme = sessionStorage.getItem('theme');
 
     if (sessionTheme) {
@@ -62,9 +62,9 @@ export class Settings implements OnInit {
       document.body.classList.toggle('dark-mode', this.theme === 'dark');
     }
 
-    // =========================
+
     // 3. OVERRIDE WITH DB THEME
-    // =========================
+
     this.http.get<any>(
       `${this.apiUrl}/get-theme/${this.userId}`
     ).subscribe({
@@ -85,9 +85,8 @@ export class Settings implements OnInit {
     });
   }
 
-  // =========================
   // GET USER PROFILE
-  // =========================
+
   getUserProfile() {
     this.http.get<any>(`${this.apiUrl}/get-user-profile/${this.userId}`)
       .subscribe({
@@ -101,9 +100,9 @@ export class Settings implements OnInit {
       });
   }
 
-  // =========================
+
   // UPDATE PROFILE
-  // =========================
+  
   updateProfile() {
 
     const payload = {
@@ -119,9 +118,9 @@ export class Settings implements OnInit {
       });
   }
 
-  // =========================
+
   // CHANGE PASSWORD
-  // =========================
+
   changePassword() {
 
     if (!this.settings.currentPassword ||
@@ -157,9 +156,9 @@ export class Settings implements OnInit {
       });
   }
 
-  // =========================
+
   // CLEAR DATA
-  // =========================
+
   clearData() {
 
     if (confirm("Delete all expenses and income?")) {
@@ -172,9 +171,9 @@ export class Settings implements OnInit {
     }
   }
 
-  // =========================
+
   // TOGGLE THEME
-  // =========================
+
   toggleTheme() {
 
     this.theme = this.theme === 'light' ? 'dark' : 'light';
