@@ -25,7 +25,6 @@ export class Login {
     private router: Router
   ) { }
 
-
   login() {
 
     const user = {
@@ -37,56 +36,72 @@ export class Login {
       .subscribe({
         next: (res: any) => {
 
-          console.log(res);
-
-          // =========================
-          // 1. STORE USER
-          // =========================
           sessionStorage.setItem('user', JSON.stringify(res.data));
 
           const userId = res.data.id;
 
           // =========================
-          // 2. FETCH THEME FROM DB (LIKE SETTINGS)
+          // CHECK IF THEME ALREADY EXISTS
           // =========================
-          this.http.get<any>(
-            `https://localhost:7042/api/ExpenseTracker/get-theme/${userId}`
-          ).subscribe({
-            next: (themeRes) => {
+          const sessionTheme = sessionStorage.getItem('theme');
 
-              const isDark = themeRes?.darkMode ?? false;
+          if (sessionTheme) {
 
-              const theme = isDark ? 'dark' : 'light';
+            // apply theme immediately
+            document.body.classList.toggle('dark-mode', sessionTheme === 'dark');
 
-              // store theme
-              sessionStorage.setItem('theme', theme);
+            // SAVE THEME TO DATABASE
+            const payload = {
+              userId: userId,
+              darkMode: sessionTheme === 'dark'
+            };
 
-              // apply theme instantly
-              document.body.classList.toggle('dark-mode', isDark);
+            this.http.post(
+              'https://localhost:7042/api/ExpenseTracker/save-theme',
+              payload
+            ).subscribe();
 
-              alert("Login successful!");
+            alert("Login successful!");
+            this.router.navigate(['/home']);
+          }
 
-              this.router.navigate(['/home']);
-            },
+          else {
 
-            error: (err) => {
+            // =========================
+            // IF NO THEME IN SESSION → LOAD FROM DB
+            // =========================
+            this.http.get<any>(
+              `https://localhost:7042/api/ExpenseTracker/get-theme/${userId}`
+            ).subscribe({
 
-              console.log("Theme fetch error:", err);
+              next: (themeRes) => {
 
-              // fallback theme
-              sessionStorage.setItem('theme', 'light');
-              document.body.classList.remove('dark-mode');
+                const isDark = themeRes?.darkMode ?? false;
+                const theme = isDark ? 'dark' : 'light';
 
-              alert("Login successful!");
+                sessionStorage.setItem('theme', theme);
 
-              this.router.navigate(['/home']);
-            }
-          });
+                document.body.classList.toggle('dark-mode', isDark);
+
+                alert("Login successful!");
+                this.router.navigate(['/home']);
+              },
+
+              error: () => {
+
+                sessionStorage.setItem('theme', 'light');
+                document.body.classList.remove('dark-mode');
+
+                alert("Login successful!");
+                this.router.navigate(['/home']);
+              }
+
+            });
+          }
 
         },
 
-        error: (err) => {
-          console.log(err);
+        error: () => {
           alert("Invalid login!");
         }
       });

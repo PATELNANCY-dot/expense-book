@@ -74,7 +74,7 @@ export class Home implements OnInit {
   // ================= LOGOUT (FIXED ERROR) =================
   logout() {
     sessionStorage.removeItem('user');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/main-home']);
   }
 
   // ================= EXPENSES =================

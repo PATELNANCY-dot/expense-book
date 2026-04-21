@@ -2,6 +2,15 @@
 
   <div class="card shadow-lg p-4 login-card">
 
+    <!-- BACK BUTTON -->
+    <div class="back-btn mb-2">
+      <a routerLink="/" class="back-link">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+    </div>
+
+    <br />
+
     <div class="text-center mb-3">
       <h2 class="fw-bold">
         <i class="bi bi-wallet2"></i> Expense Book
@@ -9,7 +18,7 @@
       <p class="text-muted">Login to manage your expenses</p>
     </div>
 
-    <form  class="form"  (ngSubmit)="login()">
+    <form class="form" (ngSubmit)="login()">
 
       <div class="mb-3 text-start">
         <label class="form-label">Email</label>
@@ -61,3 +70,4 @@
   </div>
 
 </div>
+

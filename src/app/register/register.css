@@ -54,3 +54,36 @@
 .text-success {
   color: #0f766e !important;
 }
+
+
+/* BACK BUTTON */
+
+.back-btn {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  background: #e6f4f3;
+  color: #0f766e;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+  .back-link:hover {
+    background: #d1ece9;
+  }
+
+/* DARK MODE */
+
+body.dark-mode .back-link {
+  background: #0f1a2b;
+  color: #14b8a6;
+}

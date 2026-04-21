@@ -17,244 +17,245 @@ html, body {
     background: #0b1220;
     color: #e5e7eb;
   }
+
   html.dark-mode {
     background: #0b1220;
     color: #e5e7eb;
   }
 
 
-    /* full app background safety */
-    body.dark-mode html,
-    body.dark-mode {
-      background: #0b1220 !important;
-    }
+  /* full app background safety */
+  body.dark-mode html,
+  body.dark-mode {
+    background: #0b1220 !important;
+  }
 
-      /* =========================
+    /* =========================
    PAGE BACKGROUND
 ========================= */
-      body.dark-mode .page,
-      body.dark-mode .container,
-      body.dark-mode .settings-container {
-        background: transparent !important;
-      }
+    body.dark-mode .page,
+    body.dark-mode .container,
+    body.dark-mode .settings-container {
+      background: transparent !important;
+    }
 
-      /* =========================
+    /* =========================
    GLOBAL TEXT
 ========================= */
-      body.dark-mode h1,
-      body.dark-mode h2,
-      body.dark-mode h3,
-      body.dark-mode h4,
-      body.dark-mode h5,
-      body.dark-mode p,
-      body.dark-mode label {
-        color: #e5e7eb !important;
-      }
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h3,
+    body.dark-mode h4,
+    body.dark-mode h5,
+    body.dark-mode p,
+    body.dark-mode label {
+      color: #e5e7eb !important;
+    }
 
-      /* muted text */
-      body.dark-mode .text-muted,
-      body.dark-mode small {
-        color: #94a3b8 !important;
-      }
+    /* muted text */
+    body.dark-mode .text-muted,
+    body.dark-mode small {
+      color: #94a3b8 !important;
+    }
 
-      /* =========================
+    /* =========================
    CARDS (ALL PAGES)
 ========================= */
-      body.dark-mode .card,
-      body.dark-mode .form-card,
-      body.dark-mode .settings-card,
-      body.dark-mode .login-card,
-      body.dark-mode .register-card {
-        background: #111c2e !important;
-        border: 1px solid #1f2a3a !important;
-        color: #e5e7eb !important;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.45) !important;
+    body.dark-mode .card,
+    body.dark-mode .form-card,
+    body.dark-mode .settings-card,
+    body.dark-mode .login-card,
+    body.dark-mode .register-card {
+      background: #111c2e !important;
+      border: 1px solid #1f2a3a !important;
+      color: #e5e7eb !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45) !important;
+    }
+
+      /* hover lift */
+      body.dark-mode .card:hover,
+      body.dark-mode .settings-card:hover {
+        transform: translateY(-3px);
+        border-color: #0f766e !important;
+        transition: 0.2s ease;
       }
 
-        /* hover lift */
-        body.dark-mode .card:hover,
-        body.dark-mode .settings-card:hover {
-          transform: translateY(-3px);
-          border-color: #0f766e !important;
-          transition: 0.2s ease;
-        }
-
-      /* =========================
+    /* =========================
    HEADINGS / TITLES
 ========================= */
-      body.dark-mode .page-title,
-      body.dark-mode .settings-title h1,
-      body.dark-mode .modal-title {
-        color: #14b8a6 !important;
-      }
+    body.dark-mode .page-title,
+    body.dark-mode .settings-title h1,
+    body.dark-mode .modal-title {
+      color: #14b8a6 !important;
+    }
 
-      /* secondary accent */
-      body.dark-mode .recent-title {
-        color: #0f766e !important;
-      }
+    /* secondary accent */
+    body.dark-mode .recent-title {
+      color: #0f766e !important;
+    }
 
-      /* =========================
+    /* =========================
    INPUTS (ALL FORMS)
 ========================= */
-      body.dark-mode input,
-      body.dark-mode .form-control,
-      body.dark-mode .form-select,
-      body.dark-mode textarea {
-        background: #0f1a2b !important;
-        border: 1px solid #1f2a3a !important;
-        color: #e5e7eb !important;
+    body.dark-mode input,
+    body.dark-mode .form-control,
+    body.dark-mode .form-select,
+    body.dark-mode textarea {
+      background: #0f1a2b !important;
+      border: 1px solid #1f2a3a !important;
+      color: #e5e7eb !important;
+    }
+
+      body.dark-mode input::placeholder,
+      body.dark-mode textarea::placeholder {
+        color: #64748b !important;
       }
 
-        body.dark-mode input::placeholder,
-        body.dark-mode textarea::placeholder {
-          color: #64748b !important;
-        }
+      /* focus state */
+      body.dark-mode input:focus,
+      body.dark-mode .form-control:focus,
+      body.dark-mode .form-select:focus {
+        border-color: #0f766e !important;
+        box-shadow: 0 0 0 0.2rem rgba(15,118,110,0.25) !important;
+      }
 
-        /* focus state */
-        body.dark-mode input:focus,
-        body.dark-mode .form-control:focus,
-        body.dark-mode .form-select:focus {
-          border-color: #0f766e !important;
-          box-shadow: 0 0 0 0.2rem rgba(15,118,110,0.25) !important;
-        }
-
-      /* =========================
+    /* =========================
    BUTTONS (GLOBAL TEAL SYSTEM)
 ========================= */
-      body.dark-mode .btn-success,
-      body.dark-mode .save-btn {
+    body.dark-mode .btn-success,
+    body.dark-mode .save-btn {
+      background: #0f766e !important;
+      border: none !important;
+      color: white !important;
+    }
+
+      body.dark-mode .btn-success:hover,
+      body.dark-mode .save-btn:hover {
+        background: #0c5f59 !important;
+      }
+
+    body.dark-mode .btn-danger,
+    body.dark-mode .danger-btn {
+      background: #ef4444 !important;
+      border: none !important;
+    }
+
+    body.dark-mode .btn-warning {
+      background: #f59e0b !important;
+      color: #0f172a !important;
+    }
+
+    /* outline buttons */
+    body.dark-mode .btn-outline-primary {
+      border-color: #0f766e !important;
+      color: #14b8a6 !important;
+    }
+
+      body.dark-mode .btn-outline-primary:hover {
         background: #0f766e !important;
-        border: none !important;
         color: white !important;
       }
 
-        body.dark-mode .btn-success:hover,
-        body.dark-mode .save-btn:hover {
-          background: #0c5f59 !important;
-        }
-
-      body.dark-mode .btn-danger,
-      body.dark-mode .danger-btn {
-        background: #ef4444 !important;
-        border: none !important;
-      }
-
-      body.dark-mode .btn-warning {
-        background: #f59e0b !important;
-        color: #0f172a !important;
-      }
-
-      /* outline buttons */
-      body.dark-mode .btn-outline-primary {
-        border-color: #0f766e !important;
-        color: #14b8a6 !important;
-      }
-
-        body.dark-mode .btn-outline-primary:hover {
-          background: #0f766e !important;
-          color: white !important;
-        }
-
-      /* =========================
+    /* =========================
    TABLES
 ========================= */
-      body.dark-mode .table {
-        background: #111c2e !important;
-        color: #e5e7eb !important;
-      }
+    body.dark-mode .table {
+      background: #111c2e !important;
+      color: #e5e7eb !important;
+    }
 
-        body.dark-mode .table thead {
-          background: #0f1a2b !important;
-        }
-
-        body.dark-mode .table td,
-        body.dark-mode .table th {
-          border-color: #1f2a3a !important;
-        }
-
-      /* badges */
-      body.dark-mode .badge {
+      body.dark-mode .table thead {
         background: #0f1a2b !important;
-        color: #14b8a6 !important;
-        border: 1px solid #1f2a3a;
       }
 
-      /* =========================
+      body.dark-mode .table td,
+      body.dark-mode .table th {
+        border-color: #1f2a3a !important;
+      }
+
+    /* badges */
+    body.dark-mode .badge {
+      background: #0f1a2b !important;
+      color: #14b8a6 !important;
+      border: 1px solid #1f2a3a;
+    }
+
+    /* =========================
    MODALS
 ========================= */
-      body.dark-mode .modal-content {
-        background: #111c2e !important;
-        border: 1px solid #1f2a3a !important;
-        color: #e5e7eb !important;
-      }
+    body.dark-mode .modal-content {
+      background: #111c2e !important;
+      border: 1px solid #1f2a3a !important;
+      color: #e5e7eb !important;
+    }
 
-      body.dark-mode .modal-header,
-      body.dark-mode .modal-footer {
-        border-color: #1f2a3a !important;
-      }
+    body.dark-mode .modal-header,
+    body.dark-mode .modal-footer {
+      border-color: #1f2a3a !important;
+    }
 
-      /* backdrop */
-      body.dark-mode .modal {
-        backdrop-filter: blur(6px);
-      }
+    /* backdrop */
+    body.dark-mode .modal {
+      backdrop-filter: blur(6px);
+    }
 
-      /* =========================
+    /* =========================
    LOGIN / REGISTER SPECIFIC
 ========================= */
-      body.dark-mode .login-card h2,
-      body.dark-mode .register-card h2 {
-        color: #14b8a6 !important;
-      }
+    body.dark-mode .login-card h2,
+    body.dark-mode .register-card h2 {
+      color: #14b8a6 !important;
+    }
 
-      /* input icons */
-      body.dark-mode .input-group-text {
-        background: #0f1a2b !important;
-        border: 1px solid #1f2a3a !important;
-        color: #14b8a6 !important;
-      }
+    /* input icons */
+    body.dark-mode .input-group-text {
+      background: #0f1a2b !important;
+      border: 1px solid #1f2a3a !important;
+      color: #14b8a6 !important;
+    }
 
-      /* eye button */
-      body.dark-mode .eye-btn {
-        background: #0f1a2b !important;
-        color: #14b8a6 !important;
-      }
+    /* eye button */
+    body.dark-mode .eye-btn {
+      background: #0f1a2b !important;
+      color: #14b8a6 !important;
+    }
 
-      /* =========================
+    /* =========================
    SETTINGS PAGE
 ========================= */
-      body.dark-mode .settings-title a {
+    body.dark-mode .settings-title a {
+      color: #14b8a6 !important;
+    }
+
+      body.dark-mode .settings-title a:hover {
+        background: rgba(15,118,110,0.15) !important;
+      }
+
+    /* theme toggle text */
+    body.dark-mode .theme-label {
+      color: #e5e7eb !important;
+    }
+
+    body.dark-mode .theme-sub {
+      color: #94a3b8 !important;
+    }
+
+    /* theme button */
+    body.dark-mode .theme-btn {
+      background: #0f1a2b !important;
+      border-color: #1f2a3a !important;
+    }
+
+      body.dark-mode .theme-btn i {
         color: #14b8a6 !important;
       }
 
-        body.dark-mode .settings-title a:hover {
-          background: rgba(15,118,110,0.15) !important;
-        }
-
-      /* theme toggle text */
-      body.dark-mode .theme-label {
-        color: #e5e7eb !important;
-      }
-
-      body.dark-mode .theme-sub {
-        color: #94a3b8 !important;
-      }
-
-      /* theme button */
-      body.dark-mode .theme-btn {
-        background: #0f1a2b !important;
-        border-color: #1f2a3a !important;
-      }
-
-        body.dark-mode .theme-btn i {
-          color: #14b8a6 !important;
-        }
-
-      /* =========================
+    /* =========================
    CHART / CANVAS AREA
 ========================= */
-      body.dark-mode canvas {
-        filter: brightness(0.9) contrast(1.1);
-      }
+    body.dark-mode canvas {
+      filter: brightness(0.9) contrast(1.1);
+    }
 
 /* =========================
    SCROLLBAR (CLEAN)

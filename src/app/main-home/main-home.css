@@ -1,0 +1,129 @@
+/* PAGE */
+
+.home-page {
+  padding-top: 60px;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+/* TITLE */
+.page-title {
+  color: #0f766e;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+/* SUBTITLE */
+.page-subtitle {
+  color: #f97316;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* GUIDE CARDS */
+
+.guide-card {
+  border-radius: 14px;
+  transition: 0.25s;
+  cursor: default;
+}
+
+  .guide-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  }
+
+
+/* ICONS */
+
+.guide-icon {
+  font-size: 34px;
+  color: #0f766e;
+  margin-bottom: 12px;
+}
+
+
+/* SETTINGS BUTTON */
+
+.btn-outline-secondary {
+  border-color: #dce3e2;
+  color: #0f766e;
+}
+
+  .btn-outline-secondary:hover {
+    background: #e6f4f3;
+    color: #0f766e;
+  }
+
+
+/* LOGIN BUTTON */
+
+.btn-success {
+  border-color: #0f766e;
+  color: #0f766e;
+}
+
+
+
+/* REGISTER BUTTON */
+
+.btn-outline-success {
+  border-color: #0f766e;
+  color: #0f766e;
+}
+
+  .btn-outline-success:hover {
+    background: #0f766e;
+    color: white;
+  }
+
+
+/* GUIDE TEXT */
+
+.guide-card h5 {
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.guide-card p {
+  font-size: 14px;
+}
+
+
+/* =========================
+   DARK MODE SUPPORT
+========================= */
+
+body.dark-mode .guide-card {
+  background: #111c2e !important;
+  border: 1px solid #1f2a3a !important;
+}
+
+body.dark-mode .guide-icon {
+  color: #14b8a6;
+}
+
+body.dark-mode .guide-card h5 {
+  color: #e5e7eb;
+}
+
+body.dark-mode .guide-card p {
+  color: #94a3b8;
+}
+
+body.dark-mode .btn-outline-secondary {
+  border-color: #1f2a3a;
+  color: #94a3b8;
+}
+
+  body.dark-mode .btn-outline-secondary:hover {
+    background: #0f1a2b;
+  }

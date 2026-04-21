@@ -1,0 +1,140 @@
+<div class="container page home-page">
+
+  <!-- HEADER -->
+  <div class="d-flex justify-content-between align-items-center mb-5">
+
+    <div>
+      <h2 class="fw-bold page-title">
+        <i class="bi bi-wallet2"></i> Expense Book
+      </h2>
+
+      <p class="page-subtitle">
+        Track your income and expenses easily
+      </p>
+    </div>
+
+    <div>
+      <!-- THEME TOGGLE -->
+      <button class="btn btn-outline-secondary me-3"
+              (click)="toggleTheme()">
+
+        <i *ngIf="theme === 'light'" class="bi bi-moon"></i>
+        <i *ngIf="theme === 'dark'" class="bi bi-moon-fill"></i>
+
+      </button>
+
+      <button class="btn btn-outline-success me-2"
+              routerLink="/login">
+        <i class="bi bi-box-arrow-in-right"></i> Login
+      </button>
+
+      <button class="btn btn-outline-success"
+              routerLink="/register">
+        <i class="bi bi-person-plus"></i> Register
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- GUIDE -->
+  <div class="row g-4">
+
+    <div class="col-md-3">
+
+      <div class="card shadow-sm guide-card text-center">
+        <div class="card-body">
+
+          <i class="bi bi-person-plus guide-icon"></i>
+
+          <h5>Create Account</h5>
+
+          <p class="text-muted">
+            Register to manage your expenses easily.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+      <div class="card shadow-sm guide-card text-center">
+        <div class="card-body">
+
+          <i class="bi bi-box-arrow-in-right guide-icon"></i>
+
+          <h5>Login</h5>
+
+          <p class="text-muted">
+            Login securely to access your dashboard.            
+          </p>
+         
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+      <div class="card shadow-sm guide-card text-center">
+        <div class="card-body">
+
+          <i class="bi bi-plus-circle guide-icon"></i>
+
+          <h5>Add Expenses</h5>
+
+          <p class="text-muted">
+            Add daily expenses and income easily.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="col-md-3">
+
+      <div class="card shadow-sm guide-card text-center">
+        <div class="card-body">
+
+          <i class="bi bi-bar-chart guide-icon"></i>
+
+          <h5>View Reports</h5>
+
+          <p class="text-muted">
+            See balance and charts instantly.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- INFO -->
+  <div class="text-center mt-5">
+
+    <h3 class="recent-title">
+      Simple Finance Management
+    </h3>
+
+    <p class="text-muted mt-3">
+
+      Expense Book helps you track your spending,
+      manage your income, and maintain a healthy balance.
+
+      Everything in one simple dashboard.
+
+    </p>
+
+  </div>
+
+</div>
