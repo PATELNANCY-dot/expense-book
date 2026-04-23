@@ -15,6 +15,7 @@ import { ChangeDetectorRef } from '@angular/core';
 export class Settings implements OnInit {
 
   apiUrl = "https://expensetracker-mpmh.onrender.com/api/ExpenseTracker";
+
   theme: string = 'light';
   userId: number = 0;
 
@@ -31,30 +32,30 @@ export class Settings implements OnInit {
     private http: HttpClient,
     private router: Router,
     private cdr: ChangeDetectorRef
-  ) { }
+  ) {}
 
   ngOnInit() {
-
-
-    // 1. GET USER
 
     const user = sessionStorage.getItem("user");
 
     if (!user) {
       console.error("User not found");
+      this.router.navigate(['/login']);
       return;
     }
 
     const parsedUser = JSON.parse(user);
-    this.userId = Number(parsedUser?.id);
 
-    console.log("Logged User ID:", this.userId);
+    if (!parsedUser?.id) {
+      console.error("Invalid user data");
+      return;
+    }
+
+    this.userId = Number(parsedUser.id);
 
     this.getUserProfile();
 
-
-    // 2. LOAD THEME FROM SESSION FIRST
-
+    // Load theme from session first
     const sessionTheme = sessionStorage.getItem('theme');
 
     if (sessionTheme) {
@@ -62,9 +63,7 @@ export class Settings implements OnInit {
       document.body.classList.toggle('dark-mode', this.theme === 'dark');
     }
 
-
-    // 3. OVERRIDE WITH DB THEME
-
+    // Override with DB theme
     this.http.get<any>(
       `${this.apiUrl}/get-theme/${this.userId}`
     ).subscribe({
@@ -78,31 +77,31 @@ export class Settings implements OnInit {
 
         document.body.classList.toggle('dark-mode', isDark);
       },
-
       error: (err) => {
         console.log("Theme API error:", err);
       }
     });
   }
 
-  // GET USER PROFILE
-
+  // GET USER PROFILE (FIXED ROUTE)
   getUserProfile() {
-    this.http.get<any>(`${this.apiUrl}/get-user-profile/${this.userId}`)
-      .subscribe({
-        next: (res) => {
-          this.settings.id = res.id;
-          this.settings.name = res.name;
-          this.settings.email = res.email;
-          this.cdr.detectChanges();
-        },
-        error: (err) => console.log(err)
-      });
+
+    this.http.get<any>(
+      `${this.apiUrl}/user-profile/${this.userId}`
+    ).subscribe({
+      next: (res) => {
+
+        this.settings.id = res.id;
+        this.settings.name = res.name;
+        this.settings.email = res.email;
+
+        this.cdr.detectChanges();
+      },
+      error: (err) => console.log(err)
+    });
   }
 
-
-  // UPDATE PROFILE
-  
+  // UPDATE PROFILE (⚠️ MUST EXIST IN BACKEND)
   updateProfile() {
 
     const payload = {
@@ -111,21 +110,21 @@ export class Settings implements OnInit {
       email: this.settings.email?.trim()
     };
 
-    this.http.put(`${this.apiUrl}/update-profile`, payload)
-      .subscribe({
-        next: () => alert("Profile Updated"),
-        error: (err) => console.log(err)
-      });
+    this.http.put(
+      `${this.apiUrl}/update-profile`,
+      payload
+    ).subscribe({
+      next: () => alert("Profile Updated"),
+      error: (err) => console.log(err)
+    });
   }
 
-
-  // CHANGE PASSWORD
-
+  // CHANGE PASSWORD (⚠️ MUST EXIST IN BACKEND)
   changePassword() {
 
     if (!this.settings.currentPassword ||
-      !this.settings.newPassword ||
-      !this.settings.confirmPassword) {
+        !this.settings.newPassword ||
+        !this.settings.confirmPassword) {
       alert("All fields required");
       return;
     }
@@ -141,50 +140,46 @@ export class Settings implements OnInit {
       newPassword: this.settings.newPassword
     };
 
-    this.http.put(`${this.apiUrl}/change-password`, payload)
-      .subscribe({
-        next: () => {
-          alert("Password Changed");
+    this.http.put(
+      `${this.apiUrl}/change-password`,
+      payload
+    ).subscribe({
+      next: () => {
+        alert("Password Changed");
 
-          this.settings.currentPassword = '';
-          this.settings.newPassword = '';
-          this.settings.confirmPassword = '';
+        this.settings.currentPassword = '';
+        this.settings.newPassword = '';
+        this.settings.confirmPassword = '';
 
-          this.router.navigate(['/login']);
-        },
-        error: (err) => console.log(err)
-      });
+        this.router.navigate(['/login']);
+      },
+      error: (err) => console.log(err)
+    });
   }
 
-
-  // CLEAR DATA
-
+  // CLEAR DATA (FIXED ROUTE)
   clearData() {
 
     if (confirm("Delete all expenses and income?")) {
 
-      this.http.delete(`${this.apiUrl}/clear-user-data/${this.userId}`)
-        .subscribe({
-          next: () => alert("All Data Deleted"),
-          error: (err) => console.log(err)
-        });
+      this.http.delete(
+        `${this.apiUrl}/clear-data/${this.userId}`
+      ).subscribe({
+        next: () => alert("All Data Deleted"),
+        error: (err) => console.log(err)
+      });
     }
   }
 
-
   // TOGGLE THEME
-
   toggleTheme() {
 
     this.theme = this.theme === 'light' ? 'dark' : 'light';
 
-    // session storage (current tab)
     sessionStorage.setItem('theme', this.theme);
 
-    // apply UI
     document.body.classList.toggle('dark-mode', this.theme === 'dark');
 
-    // save to DB
     const payload = {
       userId: this.userId,
       darkMode: this.theme === 'dark'
