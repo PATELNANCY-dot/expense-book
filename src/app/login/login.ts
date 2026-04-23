@@ -34,50 +34,50 @@ export class Login {
       'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/login',
       user
     ).subscribe({
-      next: (res) => {
+    next: (res) => {
 
-        sessionStorage.setItem('user', JSON.stringify(res.data));
+  sessionStorage.setItem('user', JSON.stringify(res));
 
-        const userId = res.data.id;
+  const userId = res.id;
 
-        const sessionTheme = sessionStorage.getItem('theme');
+  const sessionTheme = sessionStorage.getItem('theme');
 
-        if (sessionTheme) {
+  if (sessionTheme) {
 
-          document.body.classList.toggle('dark-mode', sessionTheme === 'dark');
+    document.body.classList.toggle('dark-mode', sessionTheme === 'dark');
 
-          this.http.post(
-            'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/save-theme',
-            {
-              userId: userId,
-              darkMode: sessionTheme === 'dark'
-            }
-          ).subscribe();
+    this.http.post(
+      'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/save-theme',
+      {
+        userId: userId,
+        darkMode: sessionTheme === 'dark'
+      }
+    ).subscribe();
 
-          this.router.navigate(['/home']);
-        }
-        else {
+    this.router.navigate(['/home']);
+  }
+  else {
 
-          this.http.get<any>(
-            `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/get-theme/${userId}`
-          ).subscribe({
-            next: (themeRes) => {
+    this.http.get<any>(
+      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/get-theme/${userId}`
+    ).subscribe({
+      next: (themeRes) => {
 
-              const isDark = themeRes?.darkMode ?? false;
+        const isDark = themeRes?.darkMode ?? false;
 
-              sessionStorage.setItem('theme', isDark ? 'dark' : 'light');
-              document.body.classList.toggle('dark-mode', isDark);
+        sessionStorage.setItem('theme', isDark ? 'dark' : 'light');
+        document.body.classList.toggle('dark-mode', isDark);
 
-              this.router.navigate(['/home']);
-            },
-            error: () => {
-              this.router.navigate(['/home']);
-            }
-          });
-
-        }
-
+        this.router.navigate(['/home']);
       },
+      error: () => {
+        this.router.navigate(['/home']);
+      }
+    });
+
+  }
+
+},
       error: () => {
         alert("Invalid login!");
       }
