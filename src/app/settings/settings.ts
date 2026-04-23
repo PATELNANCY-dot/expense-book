@@ -14,7 +14,7 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class Settings implements OnInit {
 
-  apiUrl = "https://expensetracker-pd7u.onrender.com/api/ExpenseTracker";
+  apiUrl = "https://expensetracker-mpmh.onrender.com/api/ExpenseTracker";
   theme: string = 'light';
   userId: number = 0;
 
