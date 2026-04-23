@@ -81,7 +81,7 @@ export class Home implements OnInit {
   loadExpenses(userId: number) {
 
     this.http.get<any[]>(
-      `https://expensetracker-pd7u.onrender.com/api/ExpenseTracker/get-expenses/${userId}`
+      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/get-expenses/${userId}`
     ).subscribe(res => {
 
       this.expenses = res.map(x => ({
@@ -107,7 +107,7 @@ export class Home implements OnInit {
     if (!id) return;
 
     this.http.delete(
-      `https://expensetracker-pd7u.onrender.com/api/ExpenseTracker/delete-expense/${id}`
+      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/delete-expense/${id}`
     ).subscribe(() => {
 
       alert("Deleted!");
@@ -136,7 +136,7 @@ export class Home implements OnInit {
   updateExpense() {
 
     this.http.put(
-      `https://expensetracker-pd7u.onrender.com/api/ExpenseTracker/update-expense/${this.editData.id}`,
+      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/update-expense/${this.editData.id}`,
       this.editData
     ).subscribe(() => {
 
@@ -151,7 +151,7 @@ export class Home implements OnInit {
   loadDashboard(userId: number) {
 
     this.http.get<any>(
-      `https://expensetracker-pd7u.onrender.com/api/ExpenseTracker/dashboard/${userId}`
+      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/dashboard/${userId}`
     ).subscribe(res => {
 
       this.totalIncome = res.totalIncome;
@@ -168,7 +168,7 @@ export class Home implements OnInit {
     this.showIncomeModal = true;
 
     this.http.get<any[]>(
-      `https://expensetracker-pd7u.onrender.com/api/ExpenseTracker/get-income/${this.user.id}`
+      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/get-income/${this.user.id}`
     ).subscribe(res => {
 
       this.incomes = res;
@@ -207,7 +207,7 @@ export class Home implements OnInit {
     if (this.editIncomeMode) {
 
       this.http.put(
-        `https://expensetracker-pd7u.onrender.com/api/ExpenseTracker/update-income/${this.income.id}`,
+        `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/update-income/${this.income.id}`,
         data
       ).subscribe(() => {
 
@@ -220,7 +220,7 @@ export class Home implements OnInit {
     } else {
 
       this.http.post(
-        `https://expensetracker-pd7u.onrender.com/api/ExpenseTracker/add-income`,
+        `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/add-income`,
         data
       ).subscribe(() => {
 
@@ -249,7 +249,7 @@ export class Home implements OnInit {
     if (!confirm("Delete this income?")) return;
 
     this.http.delete(
-      `https://expensetracker-pd7u.onrender.com/api/ExpenseTracker/delete-income/${id}`
+      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/delete-income/${id}`
     ).subscribe(() => {
 
       alert("Income Deleted");
