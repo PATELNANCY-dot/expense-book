@@ -43,7 +43,7 @@ export class Register {
       password: this.password
     };
 
-    this.http.post('https://expensetracker-pd7u.onrender.com/api/ExpenseTracker/register', user)
+    this.http.post('https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/register', user)
       .subscribe({
         next: (res) => {
           alert("Registration successful!");
