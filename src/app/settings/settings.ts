@@ -83,56 +83,65 @@ export class Settings implements OnInit {
       error: (err) => console.log(err)
     });
   }
+updateProfile() {
 
-  updateProfile() {
+  const payload = {
+    id: this.userId,
+    name: this.settings.name?.trim(),
+    email: this.settings.email?.trim()
+  };
 
-    const payload = {
-      id: this.userId,
-      name: this.settings.name?.trim(),
-      email: this.settings.email?.trim()
-    };
-
-    this.http.put(
-      `${this.apiUrl}/update-profile`,
-      payload
-    ).subscribe({
-      next: () => alert("Profile Updated"),
-      error: (err) => console.log(err)
-    });
-  }
+  this.http.put(
+    'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/update-profile',
+    payload
+  ).subscribe({
+    next: () => alert("Profile Updated"),
+    error: (err) => {
+      console.log(err);
+      alert(err.error?.title || "Profile update failed");
+    }
+  });
+}
 
   changePassword() {
 
-    if (!this.settings.currentPassword ||
-        !this.settings.newPassword ||
-        !this.settings.confirmPassword) {
-      alert("All fields required");
-      return;
-    }
-
-    if (this.settings.newPassword !== this.settings.confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
-
-    const payload = {
-      id: this.userId,
-      currentPassword: this.settings.currentPassword,
-      newPassword: this.settings.newPassword
-    };
-
-    this.http.put(
-      `${this.apiUrl}/change-password`,
-      payload
-    ).subscribe({
-      next: () => {
-        alert("Password Changed");
-        this.router.navigate(['/login']);
-      },
-      error: (err) => console.log(err)
-    });
+  if (!this.settings.currentPassword ||
+      !this.settings.newPassword ||
+      !this.settings.confirmPassword) {
+    alert("All fields required");
+    return;
   }
 
+  if (this.settings.newPassword !== this.settings.confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
+
+  const payload = {
+    id: this.userId,
+    currentPassword: this.settings.currentPassword,
+    newPassword: this.settings.newPassword
+  };
+
+  this.http.put(
+    `${this.apiUrl}/change-password`,
+    payload
+  ).subscribe({
+    next: (res: any) => {
+      alert(res.message || "Password changed");
+
+      this.settings.currentPassword = '';
+      this.settings.newPassword = '';
+      this.settings.confirmPassword = '';
+
+      this.router.navigate(['/login']);
+    },
+    error: (err) => {
+      console.log(err);
+      alert(err.error?.message || "Error changing password");
+    }
+  });
+}
   // ✔ FIXED ROUTE
   clearData() {
 
