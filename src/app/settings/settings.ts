@@ -72,7 +72,7 @@ export class Settings implements OnInit {
   getUserProfile() {
 
     this.http.get<any>(
-      `${this.apiUrl}/get-user-profile/${this.userId}`
+      `${this.apiUrl}user-profile/${this.userId}`
     ).subscribe({
       next: (res) => {
         this.settings.id = res.id;
@@ -92,7 +92,7 @@ updateProfile() {
   };
 
   this.http.put(
-    'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/update-profile',
+    `${this.apiUrl}/update-profile`,
     payload
   ).subscribe({
     next: () => alert("Profile Updated"),
