@@ -1,84 +1,86 @@
-login() {
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
-  const user = {
-    email: this.email,
-    password: this.password
-  };
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [FormsModule, CommonModule],
+  templateUrl: './login.html',
+  styleUrl: './login.css'
+})
+export class Login {
 
-  this.http.post<any>(
-    'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/login',
-    user
-  ).subscribe({
+  email: string = '';
+  password: string = '';
+  showPassword: boolean = false;
 
-    next: (res) => {
+  constructor(private http: HttpClient, private router: Router) {}
 
-      // 🚨 SAFETY CHECK (VERY IMPORTANT)
-      if (!res || !res.id) {
-        alert("Login failed: invalid response");
-        return;
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
+
+  login() {
+
+    const user = {
+      email: this.email,
+      password: this.password
+    };
+
+    this.http.post<any>(
+      'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/login',
+      user
+    ).subscribe({
+      next: (res) => {
+
+        sessionStorage.setItem('user', JSON.stringify(res.data));
+
+        const userId = res.data.id;
+
+        const sessionTheme = sessionStorage.getItem('theme');
+
+        if (sessionTheme) {
+
+          document.body.classList.toggle('dark-mode', sessionTheme === 'dark');
+
+          this.http.post(
+            'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/save-theme',
+            {
+              userId: userId,
+              darkMode: sessionTheme === 'dark'
+            }
+          ).subscribe();
+
+          this.router.navigate(['/home']);
+        }
+        else {
+
+          this.http.get<any>(
+            `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/get-theme/${userId}`
+          ).subscribe({
+            next: (themeRes) => {
+
+              const isDark = themeRes?.darkMode ?? false;
+
+              sessionStorage.setItem('theme', isDark ? 'dark' : 'light');
+              document.body.classList.toggle('dark-mode', isDark);
+
+              this.router.navigate(['/home']);
+            },
+            error: () => {
+              this.router.navigate(['/home']);
+            }
+          });
+
+        }
+
+      },
+      error: () => {
+        alert("Invalid login!");
       }
-
-      sessionStorage.setItem('user', JSON.stringify(res));
-
-      const userId = res.id;
-
-      const sessionTheme = sessionStorage.getItem('theme');
-
-      if (sessionTheme) {
-
-        document.body.classList.toggle(
-          'dark-mode',
-          sessionTheme === 'dark'
-        );
-
-        const payload = {
-          userId: userId,
-          darkMode: sessionTheme === 'dark'
-        };
-
-        this.http.post(
-          'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/save-theme',
-          payload
-        ).subscribe();
-
-        alert("Login successful!");
-        this.router.navigate(['/home']);
-      }
-      else {
-
-        this.http.get<any>(
-          `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/get-theme/${userId}`
-        ).subscribe({
-
-          next: (themeRes) => {
-
-            const isDark = themeRes?.darkMode ?? false;
-
-            sessionStorage.setItem('theme', isDark ? 'dark' : 'light');
-
-            document.body.classList.toggle('dark-mode', isDark);
-
-            alert("Login successful!");
-            this.router.navigate(['/home']);
-          },
-
-          error: () => {
-
-            sessionStorage.setItem('theme', 'light');
-            document.body.classList.remove('dark-mode');
-
-            alert("Login successful!");
-            this.router.navigate(['/home']);
-          }
-
-        });
-      }
-
-    },
-
-    error: (err) => {
-      console.error(err);
-      alert("Invalid login or server error!");
-    }
-  });
+    });
+  }
 }
