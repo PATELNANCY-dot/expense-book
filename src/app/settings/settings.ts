@@ -72,7 +72,7 @@ export class Settings implements OnInit {
   getUserProfile() {
 
     this.http.get<any>(
-      `${this.apiUrl}user-profile/${this.userId}`
+      `${this.apiUrl}/user-profile/${this.userId}`
     ).subscribe({
       next: (res) => {
         this.settings.id = res.id;
