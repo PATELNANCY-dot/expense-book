@@ -13,12 +13,20 @@ import { CommonModule } from '@angular/common';
 })
 export class Register {
 
+  apiUrl = "https://expensetracker-mpmh.onrender.com/api/ExpenseTracker";
+
   name: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
+
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   togglePassword() {
     this.showPassword = !this.showPassword;
@@ -27,33 +35,39 @@ export class Register {
   toggleConfirmPassword() {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
-  constructor(private http: HttpClient, private router: Router) { }
 
   register() {
 
-    // basic validation
+    // VALIDATION
+    if (!this.name || !this.email || !this.password || !this.confirmPassword) {
+      alert("All fields are required!");
+      return;
+    }
+
     if (this.password !== this.confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
 
     const user = {
-      name: this.name,
-      email: this.email,
+      name: this.name.trim(),
+      email: this.email.trim(),
       password: this.password
     };
 
-    this.http.post('https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/register', user)
-      .subscribe({
-        next: (res) => {
-          alert("Registration successful!");
-          console.log(res);
-          this.router.navigate(['/login']);
-        },
-        error: (err) => {
-          alert("Registration failed!");
-          console.log(err);
-        }
-      });
+    this.http.post(
+      `${this.apiUrl}/register`,
+      user
+    ).subscribe({
+      next: (res) => {
+        alert("Registration successful!");
+        console.log(res);
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.log("Register error:", err);
+        alert("Registration failed!");
+      }
+    });
   }
 }
