@@ -39,23 +39,15 @@ export class Settings implements OnInit {
     const user = sessionStorage.getItem("user");
 
     if (!user) {
-      console.error("User not found");
       this.router.navigate(['/login']);
       return;
     }
 
     const parsedUser = JSON.parse(user);
-
-    if (!parsedUser?.id) {
-      console.error("Invalid user data");
-      return;
-    }
-
     this.userId = Number(parsedUser.id);
 
     this.getUserProfile();
 
-    // Load theme from session first
     const sessionTheme = sessionStorage.getItem('theme');
 
     if (sessionTheme) {
@@ -63,45 +55,35 @@ export class Settings implements OnInit {
       document.body.classList.toggle('dark-mode', this.theme === 'dark');
     }
 
-    // Override with DB theme
     this.http.get<any>(
       `${this.apiUrl}/get-theme/${this.userId}`
     ).subscribe({
       next: (res) => {
-
         const isDark = res?.darkMode ?? false;
-
         this.theme = isDark ? 'dark' : 'light';
-
         sessionStorage.setItem('theme', this.theme);
-
         document.body.classList.toggle('dark-mode', isDark);
       },
-      error: (err) => {
-        console.log("Theme API error:", err);
-      }
+      error: (err) => console.log(err)
     });
   }
 
-  // GET USER PROFILE (FIXED ROUTE)
+  // ✔ FIXED ROUTE (IMPORTANT)
   getUserProfile() {
 
     this.http.get<any>(
-      `${this.apiUrl}/user-profile/${this.userId}`
+      `${this.apiUrl}/get-user-profile/${this.userId}`
     ).subscribe({
       next: (res) => {
-
         this.settings.id = res.id;
         this.settings.name = res.name;
         this.settings.email = res.email;
-
         this.cdr.detectChanges();
       },
       error: (err) => console.log(err)
     });
   }
 
-  // UPDATE PROFILE (⚠️ MUST EXIST IN BACKEND)
   updateProfile() {
 
     const payload = {
@@ -119,7 +101,6 @@ export class Settings implements OnInit {
     });
   }
 
-  // CHANGE PASSWORD (⚠️ MUST EXIST IN BACKEND)
   changePassword() {
 
     if (!this.settings.currentPassword ||
@@ -146,24 +127,19 @@ export class Settings implements OnInit {
     ).subscribe({
       next: () => {
         alert("Password Changed");
-
-        this.settings.currentPassword = '';
-        this.settings.newPassword = '';
-        this.settings.confirmPassword = '';
-
         this.router.navigate(['/login']);
       },
       error: (err) => console.log(err)
     });
   }
 
-  // CLEAR DATA (FIXED ROUTE)
+  // ✔ FIXED ROUTE
   clearData() {
 
     if (confirm("Delete all expenses and income?")) {
 
       this.http.delete(
-        `${this.apiUrl}/clear-data/${this.userId}`
+        `${this.apiUrl}/clear-user-data/${this.userId}`
       ).subscribe({
         next: () => alert("All Data Deleted"),
         error: (err) => console.log(err)
@@ -171,13 +147,11 @@ export class Settings implements OnInit {
     }
   }
 
-  // TOGGLE THEME
   toggleTheme() {
 
     this.theme = this.theme === 'light' ? 'dark' : 'light';
 
     sessionStorage.setItem('theme', this.theme);
-
     document.body.classList.toggle('dark-mode', this.theme === 'dark');
 
     const payload = {
