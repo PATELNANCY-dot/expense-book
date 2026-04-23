@@ -30,7 +30,7 @@ export class Create {
     this.expense.userId = user.id || user.Id;
 
     this.http.post(
-      'https://expensetracker-pd7u.onrender.com/api/ExpenseTracker/add-expense',
+      'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/add-expense',
       this.expense
     ).subscribe({
       next: () => {
