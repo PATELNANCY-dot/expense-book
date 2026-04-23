@@ -150,9 +150,9 @@ export class Home implements OnInit {
   // DASHBOARD 
   loadDashboard(userId: number) {
 
-    this.http.get<any>(
-      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/dashboard/${userId}`
-    ).subscribe(res => {
+   this.http.get(
+  `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/dashboard-summary/${userId}`
+).subscribe(res => {
 
       this.totalIncome = res.totalIncome;
       this.totalExpense = res.totalExpense;
