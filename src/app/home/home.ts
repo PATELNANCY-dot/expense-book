@@ -47,15 +47,12 @@ export class Home implements OnInit {
     notes: ''
   };
 
-
-
   constructor(
     private http: HttpClient,
     private router: Router,
     private cdr: ChangeDetectorRef
   ) { }
 
-  // INIT
   ngOnInit() {
 
     const userData = sessionStorage.getItem('user');
@@ -71,13 +68,11 @@ export class Home implements OnInit {
     this.loadDashboard(this.user.id);
   }
 
-  //LOGOUT
   logout() {
     sessionStorage.removeItem('user');
     this.router.navigate(['/main-home']);
   }
 
-  // EXPENSES 
   loadExpenses(userId: number) {
 
     this.http.get<any[]>(
@@ -147,12 +142,16 @@ export class Home implements OnInit {
     });
   }
 
-  // DASHBOARD 
+  // ✅ FIXED HERE (THIS WAS BREAKING NETLIFY BUILD)
   loadDashboard(userId: number) {
 
-   this.http.get(
-  `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/dashboard-summary/${userId}`
-).subscribe(res => {
+    this.http.get<{
+      totalIncome: number;
+      totalExpense: number;
+      balance: number;
+    }>(
+      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/dashboard-summary/${userId}`
+    ).subscribe(res => {
 
       this.totalIncome = res.totalIncome;
       this.totalExpense = res.totalExpense;
@@ -162,7 +161,6 @@ export class Home implements OnInit {
     });
   }
 
-  //INCOME 
   openIncomeModal() {
 
     this.showIncomeModal = true;
@@ -259,7 +257,6 @@ export class Home implements OnInit {
     });
   }
 
-  // CHART 
   openChart() {
 
     this.showChart = true;
