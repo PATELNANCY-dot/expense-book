@@ -1,107 +1,84 @@
-import { Component } from '@angular/core';
-import { Router, RouterLink } from "@angular/router";
-import { HttpClient } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'; 
+login() {
 
-@Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [RouterLink, FormsModule, CommonModule],
-  templateUrl: './login.html',
-  styleUrl: './login.css',
-})
-export class Login {
+  const user = {
+    email: this.email,
+    password: this.password
+  };
 
-  email: string = '';
-  password: string = '';
-  showPassword: boolean = false;
+  this.http.post<any>(
+    'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/login',
+    user
+  ).subscribe({
 
-  togglePassword() {
-    this.showPassword = !this.showPassword;
-  }
-  constructor(
-    private http: HttpClient,
-    private router: Router
-  ) { }
+    next: (res) => {
 
-  login() {
+      // 🚨 SAFETY CHECK (VERY IMPORTANT)
+      if (!res || !res.id) {
+        alert("Login failed: invalid response");
+        return;
+      }
 
-    const user = {
-      email: this.email,
-      password: this.password
-    };
+      sessionStorage.setItem('user', JSON.stringify(res));
 
-    this.http.post('https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/login', user)
-      .subscribe({
-        next: (res: any) => {
+      const userId = res.id;
 
-          sessionStorage.setItem('user', JSON.stringify(res.data));
+      const sessionTheme = sessionStorage.getItem('theme');
 
-          const userId = res.data.id;
+      if (sessionTheme) {
 
-          // CHECK IF THEME ALREADY EXISTS
+        document.body.classList.toggle(
+          'dark-mode',
+          sessionTheme === 'dark'
+        );
 
-          const sessionTheme = sessionStorage.getItem('theme');
+        const payload = {
+          userId: userId,
+          darkMode: sessionTheme === 'dark'
+        };
 
-          if (sessionTheme) {
+        this.http.post(
+          'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/save-theme',
+          payload
+        ).subscribe();
 
-            // apply theme immediately
-            document.body.classList.toggle('dark-mode', sessionTheme === 'dark');
+        alert("Login successful!");
+        this.router.navigate(['/home']);
+      }
+      else {
 
-            // SAVE THEME TO DATABASE
-            const payload = {
-              userId: userId,
-              darkMode: sessionTheme === 'dark'
-            };
+        this.http.get<any>(
+          `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/get-theme/${userId}`
+        ).subscribe({
 
-            this.http.post(
-              'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/save-theme',
-              payload
-            ).subscribe();
+          next: (themeRes) => {
+
+            const isDark = themeRes?.darkMode ?? false;
+
+            sessionStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+            document.body.classList.toggle('dark-mode', isDark);
+
+            alert("Login successful!");
+            this.router.navigate(['/home']);
+          },
+
+          error: () => {
+
+            sessionStorage.setItem('theme', 'light');
+            document.body.classList.remove('dark-mode');
 
             alert("Login successful!");
             this.router.navigate(['/home']);
           }
 
-          else {
+        });
+      }
 
-            // IF NO THEME IN SESSION → LOAD FROM DB
+    },
 
-            this.http.get<any>(
-              `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/get-theme/${userId}`
-            ).subscribe({
-
-              next: (themeRes) => {
-
-                const isDark = themeRes?.darkMode ?? false;
-                const theme = isDark ? 'dark' : 'light';
-
-                sessionStorage.setItem('theme', theme);
-
-                document.body.classList.toggle('dark-mode', isDark);
-
-                alert("Login successful!");
-                this.router.navigate(['/home']);
-              },
-
-              error: () => {
-
-                sessionStorage.setItem('theme', 'light');
-                document.body.classList.remove('dark-mode');
-
-                alert("Login successful!");
-                this.router.navigate(['/home']);
-              }
-
-            });
-          }
-
-        },
-
-        error: () => {
-          alert("Invalid login!");
-        }
-      });
-  }
+    error: (err) => {
+      console.error(err);
+      alert("Invalid login or server error!");
+    }
+  });
 }
