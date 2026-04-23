@@ -12,25 +12,45 @@ import { FormsModule } from '@angular/forms';
 })
 export class Create {
 
+  apiUrl = "https://expensetracker-mpmh.onrender.com/api/ExpenseTracker";
+
   expense = {
     title: '',
     amount: 0,
     category: '',
     expenseDate: '',
-    notes: '',   
+    notes: '',
     userId: 0
   };
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   addExpense() {
 
-    const user = JSON.parse(sessionStorage.getItem('user') || '{}');
+    const userData = sessionStorage.getItem('user');
 
-    this.expense.userId = user.id || user.Id;
+    if (!userData) {
+      alert("User not logged in");
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    const user = JSON.parse(userData);
+
+    if (!user?.id) {
+      alert("Invalid user session");
+      return;
+    }
+
+    this.expense.userId = user.id;
+
+    // Optional safety: ensure date is not empty
+    if (!this.expense.expenseDate) {
+      this.expense.expenseDate = new Date().toISOString();
+    }
 
     this.http.post(
-      'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/add-expense',
+      `${this.apiUrl}/add-expense`,
       this.expense
     ).subscribe({
       next: () => {
@@ -38,7 +58,8 @@ export class Create {
         this.router.navigate(['/home']);
       },
       error: (err) => {
-        console.log(err);
+        console.log("Add expense error:", err);
+        alert("Failed to add expense");
       }
     });
   }
