@@ -23,64 +23,66 @@ export class Login {
     this.showPassword = !this.showPassword;
   }
 
-  login() {
+ login() {
 
-    const user = {
-      email: this.email,
-      password: this.password
-    };
+  const user = {
+    email: this.email,
+    password: this.password
+  };
 
-    this.http.post<any>(
-      'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/login',
-      user
-    ).subscribe({
+  this.http.post<any>(
+    'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/login',
+    user
+  ).subscribe({
     next: (res) => {
 
-  sessionStorage.setItem('user', JSON.stringify(res));
+      console.log("LOGIN RESPONSE:", res);
 
-  const userId = res.id;
-
-  const sessionTheme = sessionStorage.getItem('theme');
-
-  if (sessionTheme) {
-
-    document.body.classList.toggle('dark-mode', sessionTheme === 'dark');
-
-    this.http.post(
-      'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/save-theme',
-      {
-        userId: userId,
-        darkMode: sessionTheme === 'dark'
+      if (!res?.id) {
+        alert("Invalid login response");
+        return;
       }
-    ).subscribe();
 
-    this.router.navigate(['/home']);
-  }
-  else {
+      // SAVE USER
+      sessionStorage.setItem('user', JSON.stringify(res));
 
-    this.http.get<any>(
-      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/get-theme/${userId}`
-    ).subscribe({
-      next: (themeRes) => {
+      const userId = res.id;
 
-        const isDark = themeRes?.darkMode ?? false;
+      // LOAD THEME FIRST
+      this.http.get<any>(
+        `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/get-theme/${userId}`
+      ).subscribe({
+        next: (themeRes) => {
 
-        sessionStorage.setItem('theme', isDark ? 'dark' : 'light');
-        document.body.classList.toggle('dark-mode', isDark);
+          const isDark = themeRes?.darkMode ?? false;
 
-        this.router.navigate(['/home']);
-      },
-      error: () => {
-        this.router.navigate(['/home']);
-      }
-    });
+          sessionStorage.setItem('theme', isDark ? 'dark' : 'light');
 
-  }
+          document.body.classList.toggle('dark-mode', isDark);
 
-},
-      error: () => {
-        alert("Invalid login!");
-      }
-    });
-  }
+          // SAVE THEME BACK (optional sync)
+          this.http.post(
+            'https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/save-theme',
+            {
+              userId: userId,
+              darkMode: isDark
+            }
+          ).subscribe();
+
+          this.router.navigate(['/home']);
+        },
+
+        error: () => {
+          this.router.navigate(['/home']);
+        }
+      });
+
+    },
+
+    error: (err) => {
+      console.log(err);
+      alert("Invalid login!");
+    }
+  });
+}
 }
