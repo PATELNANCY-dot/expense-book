@@ -7,20 +7,16 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\settings\\settings.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\angular\\expense-book\\src\\app\\register\\register.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\register\\register.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\angular\\expense-book\\src\\app\\settings\\settings.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\settings\\settings.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\angular\\expense-book\\src\\app\\main-home\\main-home.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\main-home\\main-home.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\angular\\expense-book\\src\\app\\login\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\login\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\angular\\expense-book\\src\\app\\home\\home.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\home\\home.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\angular\\expense-book\\src\\app\\create\\create.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\create\\create.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\angular\\expense-book\\src\\app\\login\\login.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\app\\login\\login.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\angular\\expense-book\\src\\app\\login\\login.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -34,11 +30,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:14:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "login.css",
+              "DocumentMoniker": "D:\\angular\\expense-book\\src\\app\\login\\login.css",
+              "RelativeDocumentMoniker": "src\\app\\login\\login.css",
+              "ToolTip": "D:\\angular\\expense-book\\src\\app\\login\\login.css",
+              "RelativeToolTip": "src\\app\\login\\login.css",
+              "ViewState": "AgIAADMAAAAAAAAAAAAkwEgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-05-06T07:58:30.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "login.html",
+              "DocumentMoniker": "D:\\angular\\expense-book\\src\\app\\login\\login.html",
+              "RelativeDocumentMoniker": "src\\app\\login\\login.html",
+              "ToolTip": "D:\\angular\\expense-book\\src\\app\\login\\login.html",
+              "RelativeToolTip": "src\\app\\login\\login.html",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAkwEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-05-06T07:58:20.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "login.ts",
+              "DocumentMoniker": "D:\\angular\\expense-book\\src\\app\\login\\login.ts",
+              "RelativeDocumentMoniker": "src\\app\\login\\login.ts",
+              "ToolTip": "D:\\angular\\expense-book\\src\\app\\login\\login.ts",
+              "RelativeToolTip": "src\\app\\login\\login.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-05-06T07:58:19.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "settings.html",
+              "DocumentMoniker": "D:\\angular\\expense-book\\src\\app\\settings\\settings.html",
+              "RelativeDocumentMoniker": "src\\app\\settings\\settings.html",
+              "ToolTip": "D:\\angular\\expense-book\\src\\app\\settings\\settings.html",
+              "RelativeToolTip": "src\\app\\settings\\settings.html",
+              "ViewState": "AgIAADoAAAAAAAAAAAAkwEsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-05-06T07:57:48.429Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -48,74 +96,9 @@
               "RelativeDocumentMoniker": "src\\app\\settings\\settings.ts",
               "ToolTip": "D:\\angular\\expense-book\\src\\app\\settings\\settings.ts",
               "RelativeToolTip": "src\\app\\settings\\settings.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGsAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAwwMYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2026-04-21T10:11:20.571Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "main-home.ts",
-              "DocumentMoniker": "D:\\angular\\expense-book\\src\\app\\main-home\\main-home.ts",
-              "RelativeDocumentMoniker": "src\\app\\main-home\\main-home.ts",
-              "ToolTip": "D:\\angular\\expense-book\\src\\app\\main-home\\main-home.ts",
-              "RelativeToolTip": "src\\app\\main-home\\main-home.ts",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2026-04-21T10:11:13.936Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "create.ts",
-              "DocumentMoniker": "D:\\angular\\expense-book\\src\\app\\create\\create.ts",
-              "RelativeDocumentMoniker": "src\\app\\create\\create.ts",
-              "ToolTip": "D:\\angular\\expense-book\\src\\app\\create\\create.ts",
-              "RelativeToolTip": "src\\app\\create\\create.ts",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCAAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2026-04-21T10:05:50.711Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "register.ts",
-              "DocumentMoniker": "D:\\angular\\expense-book\\src\\app\\register\\register.ts",
-              "RelativeDocumentMoniker": "src\\app\\register\\register.ts",
-              "ToolTip": "D:\\angular\\expense-book\\src\\app\\register\\register.ts",
-              "RelativeToolTip": "src\\app\\register\\register.ts",
-              "ViewState": "AgIAABoAAAAAAAAAAAAQwC0AAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2026-04-21T10:05:40.615Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "login.ts",
-              "DocumentMoniker": "D:\\angular\\expense-book\\src\\app\\login\\login.ts",
-              "RelativeDocumentMoniker": "src\\app\\login\\login.ts",
-              "ToolTip": "D:\\angular\\expense-book\\src\\app\\login\\login.ts",
-              "RelativeToolTip": "src\\app\\login\\login.ts",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAAAEcAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2026-04-21T10:05:11.654Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "home.ts",
-              "DocumentMoniker": "D:\\angular\\expense-book\\src\\app\\home\\home.ts",
-              "RelativeDocumentMoniker": "src\\app\\home\\home.ts",
-              "ToolTip": "D:\\angular\\expense-book\\src\\app\\home\\home.ts",
-              "RelativeToolTip": "src\\app\\home\\home.ts",
-              "ViewState": "AgIAADwBAAAAAAAAAAAgwPsAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2026-04-21T08:52:37.203Z",
+              "WhenOpened": "2026-05-06T07:49:21.371Z",
               "EditorCaption": ""
             }
           ]

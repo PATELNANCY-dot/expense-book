@@ -50,7 +50,11 @@ export class Create {
     }
 
     this.http.post(
+<<<<<<< HEAD
       `${this.apiUrl}/add-expense`,
+=======
+      'https://localhost:7042/api/ExpenseTracker/add-expense',
+>>>>>>> 3b6dfb8 (small changes)
       this.expense
     ).subscribe({
       next: () => {
