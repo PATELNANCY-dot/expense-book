@@ -13,7 +13,8 @@ import { CommonModule } from '@angular/common';
 })
 export class Register {
 
-  apiUrl = "https://expensetracker-mpmh.onrender.com/api/ExpenseTracker";
+  //  LOCAL API BASE
+  apiUrl = "https://localhost:7042/api/ExpenseTracker";
 
   name: string = '';
   email: string = '';
@@ -26,7 +27,7 @@ export class Register {
   constructor(
     private http: HttpClient,
     private router: Router
-  ) {}
+  ) { }
 
   togglePassword() {
     this.showPassword = !this.showPassword;
@@ -38,7 +39,7 @@ export class Register {
 
   register() {
 
-    // VALIDATION
+    //  VALIDATION
     if (!this.name || !this.email || !this.password || !this.confirmPassword) {
       alert("All fields are required!");
       return;
@@ -55,19 +56,21 @@ export class Register {
       password: this.password
     };
 
-    this.http.post(
-      `${this.apiUrl}/register`,
-      user
-    ).subscribe({
-      next: (res) => {
-        alert("Registration successful!");
-        console.log(res);
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        console.log("Register error:", err);
-        alert("Registration failed!");
-      }
-    });
+    //  LOCAL REGISTER API
+    this.http.post(`${this.apiUrl}/register`, user)
+      .subscribe({
+
+        next: (res) => {
+          console.log("REGISTER RESPONSE:", res);
+          alert("Registration successful!");
+          this.router.navigate(['/login']);
+        },
+
+        error: (err) => {
+          console.log("Register error:", err);
+          alert("Registration failed!");
+        }
+
+      });
   }
 }

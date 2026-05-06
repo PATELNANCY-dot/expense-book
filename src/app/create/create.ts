@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class Create {
 
-  apiUrl = "https://expensetracker-mpmh.onrender.com/api/ExpenseTracker";
+  apiUrl = 'https://localhost:7042/api/ExpenseTracker';
 
   expense = {
     title: '',
@@ -23,7 +23,7 @@ export class Create {
     userId: 0
   };
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   addExpense() {
 
@@ -44,17 +44,13 @@ export class Create {
 
     this.expense.userId = user.id;
 
-    // Optional safety: ensure date is not empty
+    // fallback date
     if (!this.expense.expenseDate) {
       this.expense.expenseDate = new Date().toISOString();
     }
 
     this.http.post(
-<<<<<<< HEAD
       `${this.apiUrl}/add-expense`,
-=======
-      'https://localhost:7042/api/ExpenseTracker/add-expense',
->>>>>>> 3b6dfb8 (small changes)
       this.expense
     ).subscribe({
       next: () => {

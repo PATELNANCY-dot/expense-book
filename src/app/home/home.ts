@@ -14,6 +14,8 @@ import Chart from 'chart.js/auto';
 })
 export class Home implements OnInit {
 
+  baseUrl = 'https://localhost:7042/api/ExpenseTracker';
+
   incomes: any[] = [];
   editIncomeMode = false;
 
@@ -73,14 +75,11 @@ export class Home implements OnInit {
     this.router.navigate(['/main-home']);
   }
 
+  //  EXPENSES
   loadExpenses(userId: number) {
 
     this.http.get<any[]>(
-<<<<<<< HEAD
-      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/get-expenses/${userId}`
-=======
-      `https://localhost:7042/api/ExpenseTracker/get-expenses/${userId}`
->>>>>>> 3b6dfb8 (small changes)
+      `${this.baseUrl}/get-expenses/${userId}`
     ).subscribe(res => {
 
       this.expenses = res.map(x => ({
@@ -106,17 +105,12 @@ export class Home implements OnInit {
     if (!id) return;
 
     this.http.delete(
-<<<<<<< HEAD
-      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/delete-expense/${id}`
-=======
-      `https://localhost:7042/api/ExpenseTracker/delete-expense/${id}`
->>>>>>> 3b6dfb8 (small changes)
+      `${this.baseUrl}/delete-expense/${id}`
     ).subscribe(() => {
 
       alert("Deleted!");
       this.loadExpenses(this.user.id);
       this.loadDashboard(this.user.id);
-      this.cdr.detectChanges();
     });
   }
 
@@ -141,35 +135,21 @@ export class Home implements OnInit {
   updateExpense() {
 
     this.http.put(
-<<<<<<< HEAD
-      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/update-expense/${this.editData.id}`,
-=======
-      `https://localhost:7042/api/ExpenseTracker/update-expense/${this.editData.id}`,
->>>>>>> 3b6dfb8 (small changes)
+      `${this.baseUrl}/update-expense/${this.editData.id}`,
       this.editData
     ).subscribe(() => {
 
       alert("Updated Successfully!");
       this.showEditPopup = false;
       this.loadExpenses(this.user.id);
-      this.closePopup();
     });
   }
 
-  // ✅ FIXED HERE (THIS WAS BREAKING NETLIFY BUILD)
+  //  DASHBOARD
   loadDashboard(userId: number) {
 
-<<<<<<< HEAD
-    this.http.get<{
-      totalIncome: number;
-      totalExpense: number;
-      balance: number;
-    }>(
-      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/dashboard-summary/${userId}`
-=======
     this.http.get<any>(
-      `https://localhost:7042/api/ExpenseTracker/dashboard/${userId}`
->>>>>>> 3b6dfb8 (small changes)
+      `${this.baseUrl}/dashboard/${userId}`
     ).subscribe(res => {
 
       this.totalIncome = res.totalIncome;
@@ -180,16 +160,13 @@ export class Home implements OnInit {
     });
   }
 
+  //  INCOME
   openIncomeModal() {
 
     this.showIncomeModal = true;
 
     this.http.get<any[]>(
-<<<<<<< HEAD
-      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/get-income/${this.user.id}`
-=======
-      `https://localhost:7042/api/ExpenseTracker/get-income/${this.user.id}`
->>>>>>> 3b6dfb8 (small changes)
+      `${this.baseUrl}/get-income/${this.user.id}`
     ).subscribe(res => {
 
       this.incomes = res;
@@ -212,51 +189,39 @@ export class Home implements OnInit {
       amount: item.amount,
       incomeDate: item.incomeDate.split('T')[0]
     };
-
-    this.cdr.detectChanges();
   }
 
   saveIncome() {
 
-    const user = JSON.parse(sessionStorage.getItem('user') || '{}');
-
     const data = {
       ...this.income,
-      userId: user.id
+      userId: this.user.id
     };
 
     if (this.editIncomeMode) {
 
       this.http.put(
-<<<<<<< HEAD
-        `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/update-income/${this.income.id}`,
-=======
-        `https://localhost:7042/api/ExpenseTracker/update-income/${this.income.id}`,
->>>>>>> 3b6dfb8 (small changes)
+        `${this.baseUrl}/update-income/${this.income.id}`,
         data
       ).subscribe(() => {
 
         alert("Income Updated");
         this.openIncomeModal();
         this.resetIncomeForm();
-        this.loadDashboard(user.id);
+        this.loadDashboard(this.user.id);
       });
 
     } else {
 
       this.http.post(
-<<<<<<< HEAD
-        `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/add-income`,
-=======
-        `https://localhost:7042/api/ExpenseTracker/add-income`,
->>>>>>> 3b6dfb8 (small changes)
+        `${this.baseUrl}/add-income`,
         data
       ).subscribe(() => {
 
         alert("Income Added");
         this.openIncomeModal();
         this.resetIncomeForm();
-        this.loadDashboard(user.id);
+        this.loadDashboard(this.user.id);
       });
     }
   }
@@ -278,17 +243,12 @@ export class Home implements OnInit {
     if (!confirm("Delete this income?")) return;
 
     this.http.delete(
-<<<<<<< HEAD
-      `https://expensetracker-mpmh.onrender.com/api/ExpenseTracker/delete-income/${id}`
-=======
-      `https://localhost:7042/api/ExpenseTracker/delete-income/${id}`
->>>>>>> 3b6dfb8 (small changes)
+      `${this.baseUrl}/delete-income/${id}`
     ).subscribe(() => {
 
       alert("Income Deleted");
       this.openIncomeModal();
       this.loadDashboard(this.user.id);
-      this.cdr.detectChanges();
     });
   }
 
