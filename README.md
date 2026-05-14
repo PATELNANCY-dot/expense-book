@@ -1,59 +1,147 @@
-# ExpenseBook
+💰 Expense Book
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.
+Smart personal finance tracking made simple — a full-stack expense management platform to help users efficiently manage income, expenses, and financial insights.
 
-## Development server
+📌 Overview
 
-To start a local development server, run:
+Expense Book is a modern full-stack web application designed to help users track their income and expenses in a structured and visual way.
 
-```bash
-ng serve
-```
+The platform focuses on simplicity, clarity, and real-time financial insights, allowing users to manage their daily transactions and analyze monthly spending patterns effortlessly.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+✨ Features
 
-## Code scaffolding
+🧾 Income & Expense Tracking
+➕ Add, ✏️ Edit, ❌ Delete transactions
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+📊 Dashboard Overview
+Real-time summary of income, expenses, and balance
 
-```bash
-ng generate component component-name
-```
+📈 Monthly Analytics
+Graphical representation of spending trends
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+🌗 Dark / Light Mode
+Seamless theme switching for better user experience
 
-```bash
-ng generate --help
-```
+🔐 User Authentication
+Secure login & registration system
 
-## Building
+⚙️ Settings Panel
+User preferences and customization options
 
-To build the project run:
+📱 Fully Responsive UI
 
-```bash
-ng build
-```
+🛠️ Tech Stack
+🎨 Frontend
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Angular
+TypeScript
+HTML5, CSS3
+Bootstrap
 
-## Running unit tests
+⚙️ Backend
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+.NET Core Web API
+Entity Framework Core
 
-```bash
-ng test
-```
+🗄️ Database
 
-## Running end-to-end tests
+MS SQL Server
 
-For end-to-end (e2e) testing, run:
+##📸 Screenshots
 
-```bash
-ng e2e
-```
+###🏠 Home Page
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+![Home Page](./Screenshots/home_Lightmode.png)
 
-## Additional Resources
+🌙dark mode
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![Home Page](./Screenshots/home_Dark.png)
+
+
+###🔐 Login Page
+
+![Login Page](./Screenshots/login.png)
+
+🌙dark mode
+
+![Login Page](./Screenshots/login_dark.png)
+
+
+
+###📝 Register Page
+
+![Register Page](./Screenshots/register.png)
+
+🌙dark mode
+
+![Register Page](./Screenshots/register_dark.png)
+
+
+
+###📊 Dashboard
+
+![Dashboard](./Screenshots/Dashboard.png)
+
+🌙dark mode
+
+![Dashboard](./Screenshots/Dashboard_dark.png)
+
+
+
+###💰 Manage Income
+
+![Manage Incom](./Screenshots/ManageIncome.png)
+
+🌙dark mode
+
+![Manage Incom](./Screenshots/ManageIncome_dark.png)
+
+
+
+###➕ Add Expense
+
+![Add Expense](./Screenshots/addExpence.png)
+
+🌙dark mode
+
+![Add Expense](./Screenshots/addExpence_dark.png)
+
+
+
+###✏️ Edit Expense
+
+![Edit Expense](./Screenshots/editExpence.png)
+
+🌙dark mode
+
+![Edit Expense](./Screenshots/editExpence_dark.png)
+
+
+
+###📈 Monthly Chart
+
+![Monthly Chart](./Screenshots/monthychart.png)
+
+🌙dark mode
+
+![Monthly Chart](./Screenshots/monthychart_dark.png)
+
+
+
+###⚙️ Settings Page
+
+![Settings Page](./Screenshots/settings.png)
+
+🌙dark mode
+
+![Settings Page](./Screenshots/settings_dark.png)
+
+
+
+🚀 Key Highlights
+Full-stack CRUD application (.NET + Angular)
+Real-world expense tracking system
+Clean and responsive UI
+Dark/Light theme support
+Data visualization with charts
+Secure authentication system

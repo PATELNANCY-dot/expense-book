@@ -1,59 +1,77 @@
-<div class="container">
+<div class="settings-page">
 
-  <div class="settings-title">
-    <h1>⚙ Settings</h1>
+  <!-- TOP HEADER -->
+  <div class="settings-header">
 
-    <a routerLink="/home">
+    <div>
+      <h1>⚙ Settings</h1>
+      <p>Manage your account preferences</p>
+    </div>
+
+    <a routerLink="/home" class="back-btn">
       <i class="bi bi-arrow-left"></i>
       Back
     </a>
+
   </div>
 
-  <!-- GRID WRAPPER -->
-  <div class="settings-grid">
+  <!-- PROFILE SECTION -->
+  <div class="settings-card profile-card">
 
-    <!-- LEFT COLUMN -->
-    <div class="left">
+    <div class="card-head">
+      <h3>Profile Information</h3>
+      <span>Edit your account details</span>
+    </div>
 
-      <!-- Profile -->
-      <div class="settings-card">
-        <h3>Profile</h3>
+    <div class="profile-grid">
 
-        <div class="field">
-          <label>Name</label>
-          <input type="text" [(ngModel)]="settings.name">
-        </div>
-
-        <div class="field">
-          <label>Email</label>
-          <input type="email" [(ngModel)]="settings.email">
-        </div>
-
-        <button class="save-btn" (click)="updateProfile()">
-          Update Profile
-        </button>
+      <div class="field">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="settings.name">
       </div>
 
-      <!-- Theme -->
-      <div class="settings-card theme-card">
+      <div class="field">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="settings.email">
+      </div>
 
-        <h3>Theme</h3>
+    </div>
 
-        <div class="toggle-row">
+    <button class="save-btn" (click)="updateProfile()">
+      Update Profile
+    </button>
 
-          <div class="toggle-text">
-            <span class="theme-label">
+  </div>
+  <!-- MIDDLE GRID -->
+  <div class="middle-grid">
+
+    <!-- LEFT SIDE -->
+    <div class="left-column">
+
+      <!-- THEME -->
+      <div class="settings-card">
+
+        <div class="card-head">
+          <h3>Appearance</h3>
+          <span>Customize your theme</span>
+        </div>
+
+        <div class="theme-layout">
+
+          <div>
+            <div class="theme-label">
               {{ theme === 'light' ? 'Light Mode' : 'Dark Mode' }}
-            </span>
-            <small class="theme-sub">Switch appearance</small>
+            </div>
+
+            <small class="theme-sub">
+              Switch application appearance
+            </small>
           </div>
 
           <button class="theme-btn" (click)="toggleTheme()">
 
-            <!-- LIGHT MODE (empty moon) -->
             <i *ngIf="theme === 'light'" class="bi bi-moon"></i>
 
-            <!-- DARK MODE (filled moon / moon-fill) -->
             <i *ngIf="theme === 'dark'" class="bi bi-moon-fill"></i>
 
           </button>
@@ -62,39 +80,99 @@
 
       </div>
 
-    </div>
+      <!-- DANGER ZONE -->
+      <div class="settings-card danger-card">
 
-    <!-- RIGHT COLUMN -->
-    <div class="right">
+        <div class="card-head">
+          <h3>Danger Zone</h3>
+          <span>Permanent actions</span>
+        </div>
 
-      <!-- Change Password -->
-      <div class="settings-card">
-        <h3>Change Password</h3>
-
-        <input type="password" placeholder="Current Password"
-               [(ngModel)]="settings.currentPassword">
-
-        <input type="password" placeholder="New Password"
-               [(ngModel)]="settings.newPassword">
-
-        <input type="password" placeholder="Confirm Password"
-               [(ngModel)]="settings.confirmPassword">
-
-        <button class="save-btn" (click)="changePassword()">
-          Change Password
-        </button>
-      </div>
-
-      <!-- Danger Zone -->
-      <div class="settings-card danger">
-        <h3>Danger Zone</h3>
+        <p class="danger-text">
+          Remove all application data permanently
+        </p>
 
         <button class="danger-btn" (click)="clearData()">
-          Clear All Data
+          Clear Data
         </button>
+
       </div>
 
     </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="settings-card">
+
+      <div class="card-head">
+        <h3>Security</h3>
+        <span>Update your password</span>
+      </div>
+
+      <!-- Current -->
+      <div class="password-box">
+
+        <input [type]="showCurrent ? 'text' : 'password'"
+               placeholder="Current Password"
+               [(ngModel)]="settings.currentPassword">
+
+        <span class="eye-btn" (click)="showCurrent = !showCurrent">
+          <i class="bi"
+             [ngClass]="showCurrent ? 'bi-eye-slash' : 'bi-eye'"></i>
+        </span>
+
+      </div>
+
+      <!-- New -->
+      <div class="password-box">
+
+        <input [type]="showNew ? 'text' : 'password'"
+               placeholder="New Password"
+               [(ngModel)]="settings.newPassword">
+
+        <span class="eye-btn" (click)="showNew = !showNew">
+          <i class="bi"
+             [ngClass]="showNew ? 'bi-eye-slash' : 'bi-eye'"></i>
+        </span>
+
+      </div>
+
+      <!-- Confirm -->
+      <div class="password-box">
+
+        <input [type]="showConfirm ? 'text' : 'password'"
+               placeholder="Confirm Password"
+               [(ngModel)]="settings.confirmPassword">
+
+        <span class="eye-btn" (click)="showConfirm = !showConfirm">
+          <i class="bi"
+             [ngClass]="showConfirm ? 'bi-eye-slash' : 'bi-eye'"></i>
+        </span>
+
+      </div>
+
+      <button class="save-btn" (click)="changePassword()">
+        Change Password
+      </button>
+
+      <div class="security-note">
+
+        <div class="note-icon">
+          <i class="bi bi-shield-lock"></i>
+        </div>
+
+        <div>
+          <h4>Password Security</h4>
+          <p>
+            Use at least 8 characters with a mix of letters,
+            numbers, and symbols for better account protection.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+
 
   </div>
 

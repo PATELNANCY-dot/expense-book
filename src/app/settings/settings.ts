@@ -19,7 +19,9 @@ export class Settings implements OnInit {
 
   theme: string = 'light';
   userId: number = 0;
-
+  showCurrent = false;
+  showNew = false;
+  showConfirm = false; 
   settings = {
     id: 0,
     name: '',
