@@ -4,7 +4,8 @@ import { Create } from './create/create';
 import { Login } from './login/login';
 import { Register } from './register/register';
 import { Settings } from './settings/settings';
-import { MainHome } from './main-home/main-home'; 
+import { MainHome } from './main-home/main-home';
+import { ForgotPassword } from './forgot-password/forgot-password'; 
 
 export const routes: Routes = [
 
@@ -15,6 +16,6 @@ export const routes: Routes = [
   { path: 'create', component: Create },
   { path: 'settings', component: Settings },
   { path: 'main-home', component: MainHome },
-
+  { path: 'forgot-password', component: ForgotPassword  },
 
 ];

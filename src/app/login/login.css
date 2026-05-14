@@ -92,3 +92,20 @@ body.dark-mode .back-link {
 }
 
 
+
+.forgot-link {
+  color: #0f766e;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+  .forgot-link:hover {
+    text-decoration: underline;
+  }
+
+/* DARK MODE */
+
+body.dark-mode .forgot-link {
+  color: #14b8a6;
+}
