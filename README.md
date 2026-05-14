@@ -77,7 +77,39 @@ MS SQL Server
 ![Register Page](./Screenshots/register_dark.png)
 
 
+### 🔐 Forgot Password
 
+![Forgot Password](./Screenshots/ForgetPassword1.png)
+
+🌙 dark mode
+
+![Forgot Password](./Screenshots/ForgetPassword1_dark.png)
+
+Secure forgot password flow with email OTP verification for safe account recovery.
+
+
+
+### 🔑 OTP Verification
+
+![OTP Verification](./Screenshots/ForgetPassword2.png)
+
+🌙 dark mode
+
+![OTP Verification](./Screenshots/ForgetPassword2_dark.png)
+
+OTP verification screen with resend OTP feature, loading spinner, and smooth multi-step authentication flow.
+
+
+
+### 🔄 Reset Password
+
+![Reset Password](./Screenshots/ResetPassword.png)
+
+🌙 dark mode
+
+![Reset Password](./Screenshots/ResetPassword_dark.png)
+
+Modern password reset interface with confirm password validation, password visibility toggle, and dark mode support.
 ###📊 Dashboard
 
 ![Dashboard](./Screenshots/Dashboard.png)
