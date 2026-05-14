@@ -97,7 +97,7 @@ Secure forgot password flow with email OTP verification for safe account recover
 
 ![OTP Verification](./Screenshots/ForgetPassword2_dark.png)
 
-OTP verification screen with resend OTP feature, loading spinner, and smooth multi-step authentication flow.
+[OTP verification screen with resend OTP feature, loading spinner, and smooth multi-step authentication flow.]
 
 
 
@@ -109,9 +109,10 @@ OTP verification screen with resend OTP feature, loading spinner, and smooth mul
 
 ![Reset Password](./Screenshots/ResetPassword_dark.png)
 
-Modern password reset interface with confirm password validation, password visibility toggle, and dark mode support.
-###📊 Dashboard
+[Modern password reset interface with confirm password validation, password visibility toggle, and dark mode support.]
 
+
+###📊 Dashboard
 ![Dashboard](./Screenshots/Dashboard.png)
 
 🌙dark mode
