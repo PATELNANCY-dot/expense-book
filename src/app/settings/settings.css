@@ -1,13 +1,17 @@
-html, body {
-  height: 100%;
+html,
+body {
+  min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
+  background: #020817; /* FIXED DARK BACKGROUND */
 }
+
 /* PAGE CONTAINER */
 .container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: transparent;
 }
 
 /* HEADER */
@@ -144,7 +148,7 @@ input {
   color: #64748b;
 }
 
-/* THEME BUTTON (CIRCLE) */
+/* THEME BUTTON */
 .theme-btn {
   width: 44px;
   height: 44px;
@@ -169,8 +173,7 @@ input {
     font-size: 18px;
   }
 
-/*  RESPONSIVE DESIGN */
-
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .settings-grid {
     grid-template-columns: 1fr;
@@ -182,7 +185,6 @@ input {
   }
 }
 
-
 /* PASSWORD WRAPPER */
 .password-box {
   position: relative;
@@ -190,13 +192,12 @@ input {
   margin-bottom: 12px;
 }
 
-  /* INPUT INSIDE PASSWORD BOX */
   .password-box input {
     width: 100%;
-    padding-right: 45px; /* space for eye */
+    padding-right: 45px;
   }
 
-/* EYE BUTTON (same vibe as login) */
+/* EYE BUTTON */
 .eye-btn {
   position: absolute;
   right: 10px;
@@ -223,12 +224,13 @@ input {
     font-size: 16px;
   }
 
-
 /* PAGE */
 .settings-page {
   padding: 25px;
   max-width: 1200px;
   margin: auto;
+  min-height: 100vh;
+  background: transparent;
 }
 
 /* HEADER */
@@ -260,6 +262,7 @@ input {
   font-weight: 600;
   transition: 0.2s;
 }
+
 /* CARD HEADER */
 .card-head {
   margin-bottom: 18px;
@@ -301,7 +304,7 @@ input {
 /* DANGER */
 .danger-card {
   margin-top: 24px;
-  border: 1px solid #fecaca;
+  border: 1px solid rgba(239, 68, 68, 0.25);
 }
 
 .danger-content {
@@ -318,7 +321,6 @@ input {
 
 /* MOBILE */
 @media (max-width: 768px) {
-
   .middle-grid,
   .profile-grid {
     grid-template-columns: 1fr;
@@ -341,7 +343,6 @@ input {
   }
 }
 
-
 /* LEFT COLUMN */
 .left-column {
   display: flex;
@@ -355,13 +356,6 @@ input {
   margin-bottom: 18px;
   line-height: 1.5;
 }
-
-/* BETTER DANGER CARD */
-.danger-card {
-  border: 1px solid rgba(239, 68, 68, 0.25);
-}
-
-
 
 /* SECURITY NOTE */
 .security-note {
@@ -387,7 +381,6 @@ input {
   background: rgba(15, 118, 110, 0.14);
 }
 
-  /* ICON */
   .note-icon i {
     color: #0f766e;
     font-size: 18px;
